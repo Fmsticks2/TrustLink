@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {BellIcon, MagnifyingGlassIcon} from '@heroicons/react/20/solid';
 import { Menu } from '@headlessui/react';
+import { Link } from 'react-router-dom';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -117,14 +118,14 @@ function Header() {
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#logout"
+                <Link
+                  to="/login"
                   className={`${
                     active ? 'bg-gray-100' : ''
                   } block px-4 py-2 text-sm text-gray-700`}
                 >
                   Logout
-                </a>
+                </Link>
               )}
             </Menu.Item>
           </Menu.Items>

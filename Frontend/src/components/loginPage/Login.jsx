@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login({ onSignIn }) {
   const [email, setEmail] = useState("");
@@ -57,32 +57,39 @@ function Login({ onSignIn }) {
           </button>
         </div>
 
-   {/* Separator */}
-   <div className="my-6 border-t border-gray-300 relative">
+        {/* Separator */}
+        <div className="my-6 border-t border-gray-300 relative">
           <span className="absolute top-[-10px] left-1/2 transform -translate-x-1/2 bg-white px-2 text-gray-600">
             OR
           </span>
         </div>
 
 
-         {/* Email Sign-In */}
-         <form onSubmit={handleEmailSignIn} className="space-y-4 ">
-          <div>
-            <label className="block text-gray-700 font-medium mb-2">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
+          {/* Email Sign-In */}
+          <form onSubmit={handleEmailSignIn} className="space-y-4 ">
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+          
+            <button
+              type="submit"
+              className="w-full bg-[#FF4C4A] text-white py-2 rounded-full hover:bg-red-600 transition"
+            >Sign in with Email
+            </button>
+          </form>
+
+          <div className="flex gap-2 items-center justify-center my-6 flex-wrap">
+            <span>Already have an account? </span>
+            <Link to={'/signin'} className="text-[#FF4C4A]">
+              Log in
+            </Link> 
           </div>
-        
-          <button
-            type="submit"
-            className="w-full bg-red-500 text-white py-2 rounded-full hover:bg-red-600 transition"
-          >Sign in with Email
-          </button>
-        </form>
       </div>
     </div>
   );
