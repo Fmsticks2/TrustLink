@@ -1,11 +1,11 @@
 import React from 'react';
-import UserInfo from '../../components/profilePage/UserInfo';
-import Verification from '../../components/profilePage/Verification';
-import Portfolio from '../../components/profilePage/Portfolio';
-import Reviews from '../../components/profilePage/Reviews';
-import Skills from '../../components/profilePage/Skills';
-import Education from '../../components/profilePage/Education';
-import Experiences from '../../components/profilePage/Experiences';
+import UserInfo from './profilePage/UserInfo';
+import Verification from './profilePage/Verification';
+import Portfolio from './profilePage/Portfolio';
+import Reviews from './profilePage/Reviews';
+import Skills from './profilePage/Skills';
+import Education from './profilePage/Education';
+import Experiences from './profilePage/Experiences';
 import BgImg from '../../../public/bgImage.png';
 
 const FreeLancerProfile = () => {

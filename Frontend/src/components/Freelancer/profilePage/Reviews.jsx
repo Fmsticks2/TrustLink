@@ -1,5 +1,5 @@
 import React from 'react'
-import ReviewImg from '../../../public/reviewImg.png'
+import ReviewImg from '../../../../public/reviewImg.png'
 
 const Reviews = () => {
 

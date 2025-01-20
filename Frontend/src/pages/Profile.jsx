@@ -1,11 +1,11 @@
 import React from 'react';
-import UserInfo from '../components/profilePage/UserInfo';
-import Verification from '../components/profilePage/Verification';
-import Portfolio from '../components/profilePage/Portfolio';
-import Reviews from '../components/profilePage/Reviews';
-import Skills from '../components/profilePage/Skills';
-import Education from '../components/profilePage/Education';
-import Experiences from '../components/profilePage/Experiences';
+import UserInfo from '../components/Freelancer/profilePage/UserInfo';
+import Verification from '../components/Freelancer/profilePage/Verification';
+import Portfolio from '../components/Freelancer/profilePage/Portfolio';
+import Reviews from '../components/Freelancer/profilePage/Reviews';
+import Skills from '../components/Freelancer/profilePage/Skills';
+import Education from '../components/Freelancer/profilePage/Education';
+import Experiences from '../components/Freelancer/profilePage/Experiences';
 import BgImg from '../assets/bgImage.png'; // Update this path if needed
 
 const Profile = () => {
