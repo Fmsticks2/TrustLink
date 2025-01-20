@@ -85,12 +85,12 @@ function ClientHomepage ({ onSignOut }) {
 
 
 return ( 
-    <div className=" Clienthomepage min-h-screen w-full flex flex-row gap-4 items-start justify-around bg-gray-100 px-4  ">
+    <div className=" Clienthomepage min-h-screen w-full flex flex-col   gap-4 items-start justify-center px-2 lg:justify-around bg-gray-100 lg:px-4 lg:flex-row   ">
 
       {/*Left wing*/}
-       <div className=" flex flex-col items-center justify-center gap-6 ml-[95px] ">
-        <div className="welcome absolute
-        top-[125px] left-[113px] text-[#2A1E17] text-xl font-normal">Welcome back, <span className="font-bold">Adam Smith</span></div> {/* Name of the user */}
+       <div className=" flex flex-col items-center justify-center gap-6 lg:ml-[2vw] ">
+        <div className="welcome text-center lg:absolute
+        lg:top-[125px] lg:left-[3vw] text-[#2A1E17] text-xl font-normal">Welcome back, <span className="font-bold">Adam Smith</span></div> {/* Name of the user */}
  {/* Job post */}
        <div className="Jobs flex flex-row justify-between items-center gap-4  bg-white p-4 mt-[178px] rounded-lg shadow-lg relative w-[804px]">
         {/* Job post text */}
@@ -224,7 +224,7 @@ return (
 
        {/*Right wing*/}
       <div className=" flex flex-col items-start justify-start w-[390px] mt-[178px] gap-6 shadow-lg rounded-lg"> 
-       <button onClick={backtologin}   className="  rounded-full absolute top-[125px] left-[1138px] bg-[#FF4C4A] w-[190px] h-[39px] text-white font-bold text-base ">
+       <button onClick={backtologin}   className="  rounded-full lg:absolute lg:top-[125px] lg:right-[2vw] bg-[#FF4C4A] w-[190px] h-[39px] text-white font-bold text-base ">
         Post a job now</button>
         
         {/* Profile completion */}
