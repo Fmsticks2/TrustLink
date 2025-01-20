@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import {BellIcon, MagnifyingGlassIcon} from '@heroicons/react/20/solid';
 import { Menu } from '@headlessui/react';
 import { Link, useNavigate } from 'react-router-dom';
+import UserImg from '../../../public/profile.svg'
 
-function Header() {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hasNotifications, setHasNotifications] = useState(true);
   const navigate = useNavigate();
@@ -26,8 +27,9 @@ function Header() {
         <div className="left flex items-center gap-4">
               {/* Logo */}
       
-        <a href="#" className="logo text-[20px] font-normal">
-        <span className='font-extrabold	'>Trust</span>Link</a>
+        <Link to={'/'} className="logo text-[20px] font-normal">
+          <span className='font-extrabold	'>Trust</span>Link
+        </Link>
 
             {/* Search Bar */}
             <div className="hidden lg:flex items-center bg-[#494A4D] rounded-full px-4 py-2 w-64">
@@ -82,7 +84,7 @@ function Header() {
        <Menu as="div" className="relative">
           <Menu.Button className="flex items-center space-x-2">
             <img
-              src="profile.svg"
+              src={UserImg}
               alt="Profile"
               className="w-10 h-10 rounded-full"
             />
@@ -94,7 +96,7 @@ function Header() {
             <Menu.Item>
               {({ active }) => (
                 <Link
-                  to="/profile"
+                  to="/freelancer/profile"
                   className={`${
                     active ? 'bg-gray-100' : ''
                   } block px-4 py-2 text-sm text-gray-700`}
@@ -183,32 +185,4 @@ function Header() {
   );
 }
 
-export default Header;
-
-
-// return (
-//   <header className="bg-white shadow-sm">
-//     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//       <div className="flex justify-between items-center h-16">
-//         <div className="flex items-center">
-//           <Link to="/dashboard" className="text-xl font-bold text-gray-800">
-//             FreelanceHub
-//           </Link>
-//         </div>
-        
-//         <nav className="flex items-center space-x-4">
-//           <Link 
-//             to="/dashboard" 
-//             className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm"
-//           >
-//             Dashboard
-//           </Link>
-//           <Link 
-//             to="/profile" 
-//             className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm"
-//           >
-//             Profile
-//           </Link>
-//           <button
-//             onClick={handleLogout}
-//             className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm"
+export default Navbar;

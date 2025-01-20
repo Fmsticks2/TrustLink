@@ -1,12 +1,12 @@
 import React from 'react';
-import UserInfo from '../components/profilePage/UserInfo';
-import Verification from '../components/profilePage/Verification';
-import Portfolio from '../components/profilePage/Portfolio';
-import Reviews from '../components/profilePage/Reviews';
-import Skills from '../components/profilePage/Skills';
-import Education from '../components/profilePage/Education';
-import Experiences from '../components/profilePage/Experiences';
-import BgImg from '../assets/bgImage.png'; // Update this path if needed
+import UserInfo from '../../components/profilePage/UserInfo';
+import Verification from '../../components/profilePage/Verification';
+import Portfolio from '../../components/profilePage/Portfolio';
+import Reviews from '../../components/profilePage/Reviews';
+import Skills from '../../components/profilePage/Skills';
+import Education from '../../components/profilePage/Education';
+import Experiences from '../../components/profilePage/Experiences';
+// import BgImg from '../assets/bgImage.png'; // Update this path if needed
 
 const Profile = () => {
   return (
@@ -14,7 +14,7 @@ const Profile = () => {
       <div 
         className="w-full h-48 z-0 top-20"
         style={{
-          backgroundImage: `url(${BgImg})`,  // Correct backgroundImage syntax
+          // backgroundImage: `url(${BgImg})`,  // Correct backgroundImage syntax
           backgroundColor: '#2942A5',
           backgroundSize: 'contain',
           backgroundPosition: 'right',
@@ -22,9 +22,9 @@ const Profile = () => {
         }}
       />
       <div className=''>
-        <img src={BgImg} className='w-fit absolute top-20 right' alt="" />
+        {/* <img src={BgImg} className='w-fit absolute top-20 right' alt="" /> */}
       </div>
-      <div className="max-w-7xl mx-auto mt-40 px-4 py-8 relative z-10">
+      <div className="max-w-7xl mx-auto mt-20 px-4 py-8 relative z-10">
         <div className="grid grid-cols-3 gap-6">
           <div className="col-span-2 space-y-6">
             <UserInfo />
