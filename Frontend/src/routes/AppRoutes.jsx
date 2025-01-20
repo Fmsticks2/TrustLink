@@ -5,10 +5,10 @@ import Signup from '../components/Auth/Signup';
 import UserTypeSelection from '../components/Auth/UserTypeSelection';
 import FreelancerHome from '../components/Freelancer/FreelancerHome';
 import ClientHome from '../components/Client/ClientHome';
-import Profile from '../pages/freelancer/Profile.jsx';
 import Dashboard from '../pages/Dashboard';
 import PrivateRoute from './PrivateRoutes';
 import FreeLancerProfile from '../components/Freelancer/FreeLancerProfile.jsx';
+import Onboarding from '../components/Freelancer/Onboarding'
 
 const AppRoutes = () => {
 
@@ -39,9 +39,9 @@ const AppRoutes = () => {
         {/* Protected Routes */}
         {/* <Route element={<PrivateRoute />}> */}
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/freelancer/home" element={<FreelancerHome />} />
           <Route path="/freelancer/profile" element={<FreeLancerProfile />} />
+          <Route path="/freelancer/onboarding" element={<Onboarding />} />
           <Route path="/client/home" element={<ClientHome />} />
         {/* </Route> */}
 

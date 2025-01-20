@@ -1,7 +1,7 @@
 import React from 'react'
-import Portfolio1 from '../../../public/portfolio1.png'
-import Portfolio2 from '../../../public/portfolio2.png'
-import Portfolio3 from '../../../public/portfolio3.png'
+import Portfolio1 from '../../../../public/portfolio1.png'
+import Portfolio2 from '../../../../public/portfolio2.png'
+import Portfolio3 from '../../../../public/portfolio3.png'
 import { TrashIcon } from '@heroicons/react/20/solid'
 
 
@@ -16,6 +16,7 @@ const Portfolio = () => {
     },
     {
       src: Portfolio2, 
+      alt: "Online Wallet App",
       height: 44, 
       width: 'full' 
     },
@@ -47,7 +48,7 @@ const Portfolio = () => {
             <img 
               src={item.src} 
               alt={item.alt} 
-              className={`w-64 h-${item.alt ? '32' : '44'} object-cover hover:opacity-90 transition-opacity`} 
+              className={`w-64 h-${item.alt ? '32' : 'full'} object-cover hover:opacity-90 transition-opacity`} 
             />
             {item.alt && (
               <p className="p-4 font-semibold text-sm">{item.alt}</p>

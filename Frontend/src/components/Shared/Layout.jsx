@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../Navigation/Header';
 import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -10,7 +9,7 @@ const Layout = ({ children }) => {
   const isAuthPage = authRoutes.includes(location.pathname);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-100">
       {/* {!isAuthPage && <Header />} */}
       <Navbar />
       <main className="min-h-[calc(100vh-64px)]  my-10">

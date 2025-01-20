@@ -90,7 +90,7 @@ function Footer() {
 <div className="line border border-solid border-white opacity-40  w-full	"></div>
 {/* Footer Bottom */}
 <div className="mt-5 grid grid-cols-2 lg:grid-cols-5 gap-2 text-[15px] font-normal  text-white lg:w-2/3">
-<p>2025 TrustLink</p>
+<p>{new Date().getFullYear()} TrustLink</p>
 <p>Terms of Service</p>
 <p>Privacy Policy</p>
 <p>CA Notice at Collection</p>
