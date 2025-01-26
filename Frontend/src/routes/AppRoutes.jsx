@@ -3,7 +3,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../components/Auth/Login';
 import Signup from '../components/Auth/Signup';
 import FreelancerHome from '../components/Freelancer/FreelancerHome';
-import ClientHome from '../components/Client/ClientHome';
+import ClientHome from '../components/Client/homepage/ClientHomepage.jsx';
+import Createjob from '../components/Client/createjob/Createjob.jsx';
 import Dashboard from '../pages/Dashboard';
 import PrivateRoute from './PrivateRoutes';
 import FreeLancerProfile from '../components/Freelancer/FreeLancerProfile.jsx';
@@ -41,6 +42,7 @@ const AppRoutes = () => {
           <Route path="/freelancer/profile" element={<FreeLancerProfile />} />
           <Route path="/freelancer/onboarding" element={<Onboarding />} />
           <Route path="/client/home" element={<ClientHome />} />
+          <Route path="/client/createjob" element={<Createjob />} />
         {/* </Route> */}
 
         {/* Default Route */}
