@@ -6,7 +6,7 @@ import "./libraries/MilestoneLib.sol";
 import "./helpers/SafeTransfer.sol";
 
 contract TrustLinkEscrow is ITrustLinkEscrow {
-    using MilestoneLib for Milestone;
+    using MilestoneLib for MilestoneLib.Milestone;
     using SafeTransfer for address payable;
 
     uint256 private projectCounter;
@@ -16,7 +16,7 @@ contract TrustLinkEscrow is ITrustLinkEscrow {
         address owner;
         address[] collaborators;
         uint256 totalFunds;
-        mapping(uint256 => Milestone) milestones;
+        mapping(uint256 => MilestoneLib.Milestone) milestones;
         uint256 milestoneCount;
     }
 
@@ -39,7 +39,7 @@ contract TrustLinkEscrow is ITrustLinkEscrow {
 
         for (uint256 i = 0; i < collaborators.length; i++) {
             project.collaborators.push(collaborators[i]);
-            project.milestones[i] = Milestone({
+            project.milestones[i] = MilestoneLib.Milestone({
                 amount: amounts[i],
                 isApproved: false,
                 isCompleted: false,
@@ -52,24 +52,53 @@ contract TrustLinkEscrow is ITrustLinkEscrow {
     }
 
     function submitMilestone(uint256 projectId, uint256 milestoneId) external override {
+        require(projectId > 0 && projectId <= projectCounter, "Invalid project ID");
         Project storage project = projects[projectId];
-        Milestone storage milestone = project.milestones[milestoneId];
+        require(milestoneId < project.milestoneCount, "Invalid milestone ID");
 
+        MilestoneLib.Milestone storage milestone = project.milestones[milestoneId];
         require(milestone.collaborator == msg.sender, "Not assigned collaborator");
-        milestone.complete();
 
+        milestone.complete();
         emit MilestoneSubmitted(projectId, milestoneId);
     }
 
     function approveMilestone(uint256 projectId, uint256 milestoneId) external override onlyOwner(projectId) {
+        require(projectId > 0 && projectId <= projectCounter, "Invalid project ID");
         Project storage project = projects[projectId];
-        Milestone storage milestone = project.milestones[milestoneId];
+        require(milestoneId < project.milestoneCount, "Invalid milestone ID");
 
+        MilestoneLib.Milestone storage milestone = project.milestones[milestoneId];
         milestone.approve();
         payable(milestone.collaborator).safeTransfer(milestone.amount);
 
         emit MilestoneApproved(projectId, milestoneId);
         emit FundsReleased(projectId, milestoneId, milestone.collaborator);
+    }
+
+    function getProject(uint256 projectId) external view returns (
+        address owner,
+        address[] memory collaborators,
+        uint256 totalFunds,
+        uint256 milestoneCount
+    ) {
+        require(projectId > 0 && projectId <= projectCounter, "Invalid project ID");
+        Project storage project = projects[projectId];
+        return (project.owner, project.collaborators, project.totalFunds, project.milestoneCount);
+    }
+
+    function getMilestone(uint256 projectId, uint256 milestoneId) external view returns (
+        uint256 amount,
+        bool isApproved,
+        bool isCompleted,
+        address collaborator
+    ) {
+        require(projectId > 0 && projectId <= projectCounter, "Invalid project ID");
+        Project storage project = projects[projectId];
+        require(milestoneId < project.milestoneCount, "Invalid milestone ID");
+
+        MilestoneLib.Milestone storage milestone = project.milestones[milestoneId];
+        return (milestone.amount, milestone.isApproved, milestone.isCompleted, milestone.collaborator);
     }
 
     function sum(uint256[] memory amounts) private pure returns (uint256 total) {

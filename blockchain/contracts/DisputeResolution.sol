@@ -26,12 +26,18 @@ contract DisputeResolution is IDisputeResolution {
     }
 
     function resolveDispute(uint256 disputeId, string calldata resolutionDetails) external override {
+        require(disputeId > 0 && disputeId <= disputeCounter, "Invalid dispute ID");
         Dispute storage dispute = disputes[disputeId];
-
         require(!dispute.isResolved, "Dispute already resolved");
+
         dispute.isResolved = true;
         dispute.resolver = msg.sender;
 
         emit DisputeResolved(disputeId, msg.sender, resolutionDetails);
+    }
+
+    function getDispute(uint256 disputeId) external view returns (Dispute memory) {
+        require(disputeId > 0 && disputeId <= disputeCounter, "Invalid dispute ID");
+        return disputes[disputeId];
     }
 }
