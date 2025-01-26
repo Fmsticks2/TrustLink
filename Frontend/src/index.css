@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
+body {
+  font-family: 'Montserrat', cursive;
+}
 /* Scrollbar Track */
 .scrollbar-custom::-webkit-scrollbar {
   width: 6px; /* Horizontal scrollbar height */

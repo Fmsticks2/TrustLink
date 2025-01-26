@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../components/Auth/Login';
 import Signup from '../components/Auth/Signup';
-import UserTypeSelection from '../components/Auth/UserTypeSelection';
 import FreelancerHome from '../components/Freelancer/FreelancerHome';
 import ClientHome from '../components/Client/homepage/ClientHomepage.jsx';
 import Createjob from '../components/Client/createjob/Createjob.jsx';
@@ -38,7 +37,6 @@ const AppRoutes = () => {
         {/* Public Routes */}
         <Route path="/login" element={<Login isSignedIn={handleSignIn} />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/user-type" element={<UserTypeSelection />} />
         
         {/* Protected Routes */}
         {/* <Route element={<PrivateRoute />}> */}
