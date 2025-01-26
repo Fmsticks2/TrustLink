@@ -240,8 +240,8 @@ function Createjob() {
     <button
           type="submit"
           className="rounded-full bg-[#FF4C4A] w-[190px] h-[39px] text-white font-bold text-base"
-        >
-          Post job Now
+        > <Link to={'/client/postedjob'}>
+          Post job Now </Link>
         </button>
         <button
           type="button"

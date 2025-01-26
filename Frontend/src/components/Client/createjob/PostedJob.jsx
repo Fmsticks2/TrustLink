@@ -1,8 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useState } from 'react';
-import {MagnifyingGlassIcon} from '@heroicons/react/20/solid';
 import { useNavigate } from "react-router-dom";
-import nojob from '../../../../public/nojob.svg';
 import backgroundImage from '../../../../public/gridImg.png';
 import profile from '../../../../public/profile.svg'; 
 import mariya from '../../../../public/mariya.svg';
@@ -11,12 +8,11 @@ import dullstar from '../../../../public/dullstar.svg';
 import flag from '../../../../public/flag.svg';
 import active from '../../../../public/active.svg'; 
 import complete from '../../../../public/complete.svg'; 
-import cancled from '../../../../public/cancled.svg'; 
-import filter from '../../../../public/filter.svg';
-import identitybody from '../../../../public/identitybody.svg';
-import identity from '../../../../public/identity.svg';
-import phone from '../../../../public/phone.svg'
-import email from '../../../../public/email.svg'
+import cancled from '../../../../public/cancled.svg';
+import phone from '../../../../public/phone.svg';
+import email from '../../../../public/email.svg';
+import identity from '../../../../public/identity.svg'; 
+import identitybody from '../../../../public/identitybody.svg'; 
 
 
 
@@ -27,7 +23,8 @@ import email from '../../../../public/email.svg'
 
 
 
-function ClientHomepage ({ onSignOut }) {
+
+function Postedjob ({ onSignOut }) {
 
   const navigate = useNavigate();
 
@@ -37,7 +34,9 @@ function ClientHomepage ({ onSignOut }) {
 
   }
 
-const [searchTerm, setSearchTerm] = useState('');
+  const createjob = () => {
+    navigate("/Createjob")
+  }
 
 
   const talentData = [
@@ -110,66 +109,67 @@ const [searchTerm, setSearchTerm] = useState('');
  
   ];
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const filteredTalent = talentData.filter((talent) =>
-    talent.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
 return ( 
-    <div className=" Clienthomepage min-h-screen w-full flex flex-col   gap-4 items-center justify-center px-2 lg:justify-around bg-gray-100 lg:px-4 lg:flex-row lg:items-start   ">
+    <div className=" postedjob min-h-screen w-full flex flex-col   gap-4 items-center justify-center px-2 lg:justify-around bg-gray-100 lg:px-4 lg:flex-row lg:items-start   ">
 
       {/*Left wing*/}
        <div className=" flex flex-col items-center justify-center w-full gap-6 mt-[7em] lg:w-[60vw]  lg:ml-[2vw] lg:mt-0 ">
        <div className="welcome text-center  lg:absolute
         lg:top-[125px] lg:left-[3vw] text-[#2A1E17] text-xl font-normal">Welcome back, <span className="font-bold">Adam Smith</span></div> {/* Name of the user */}
- {/* Job post */}
-       <div className="Jobs flex flex-col   justify-between items-center gap-4  bg-white p-4  rounded-lg shadow-lg relative w-full lg:flex-row lg:mt-[178px] lg:w-[60vw]">
-        {/* Job post text */}
-        <div className="jobpost flex flex-col items-center justify-center text-center gap-4 w-full h-[182px] p-2 lg:items-start lg:text-start lg:justify-start lg:w-[310px] ">
-        <div className="jobname text-[#2A1E17] font-semibold text-xl">No job post</div>  
-        <div className="jobdescription font-normal  text-sm lg:font-semibold">You have not posted any job, post your job 
-        and find worlds best talent here.</div>
-        <Link to={'/client/createjob'} className="rounded-full flex justify-center items-center bg-[#FF4C4A] w-[190px] h-[39px] text-white font-bold text-base ">Post now</Link>
-        
-
+ {/* Job posting */}
+       <div className=" items-start gap-4  bg-white p-4  rounded-lg shadow-lg relative w-full lg:flex-row lg:mt-[178px] lg:w-[60vw]">
+        {/* Job posting text */}
+       <div className=" flex items-center  justify-between">
+        <h2 className="text-lg font-semibold">Your posting</h2>
+        <button className="px-4 py-1 w-[147px] h-[39px] text-red-500 border  border-red-500 rounded-full "><Link to={'/client/viewproposal'}>
+          View all jobs </Link>
+        </button>
         </div>
+        <div className="border border-black opacity-10  w-full   mt-4 "  ></div>
 
-        {/* Job post image */}
-        <img className="hidden lg:flex absolute right-0 -top-7" src={nojob} alt="" />
+           
+            {/* Job Posting Details */}
 
+            <div className="details flex justify-between items-start py-4">
+            <div className="flex flex-col gap-2">
+        {/* Job Title */}
+        <h3 className="font-semibold text-base">Russian Preschool Content - Categorisation</h3>
+        
+        {/* Sub-details */}
+        <div className="text-sm text-gray-500">
+          Fixed-price - Intermediate - 
+          <span className="block">Est. Budget: $2,000 - Posted 8 hours ago</span>
+        </div>
+      </div>
+      
+      {/* Proposals and Hired */}
+      <div className="flex justify-between gap-4">
+        <div className="text-sm flex flex-col gap-2 text-gray-500">
+          <span className="font-semibold text-black">Proposals</span> 24
+        </div>
+        <div className="text-sm flex flex-col gap-2 text-gray-500">
+          <span className="font-semibold text-black">Hired</span> 01
+        </div>
+      </div>
 
+      </div>
        </div>
 
+       
 
-{/* Search Talent */}
-       <div className="flex border border-gray-300 rounded-lg overflow-hidden w-full lg:w-[60vw] h-[53px]">
-        {/* Input Field */}
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={handleSearchChange}
-          placeholder="Search"
-          className="w-full px-4 py-2 outline-none"
-        />
-        {/* Search Button */}
-        <button className="flex items-center justify-center px-4 bg-[#FF4C4A] hover:bg-[#e64543]  text-white">
-          <MagnifyingGlassIcon className="h-6 w-6" /> Search
-        </button>
-      </div>
+
 {/* Best Matches */}
       <div className="matches relative w-full  mt-[32px]  flex flex-col justify-center items-center lg:w-[60vw] ">
-   <div className="text absolute top-0 left-0">Best matches for you (200)</div>
-   <div className="text flex gap-2 absolute top-0 right-0 text-[#FF4C4A]">
-    <img src={filter} alt="" /> <div className="filter-text"></div>Filter here</div>
+   <div className="text absolute top-0 left-4 py-1 border- border-b-2 border-red-500 px-4  ">Discover talent</div>
+   <div className="border border-black opacity-10  w-full   mt-8 "  ></div>
+   <div className="text-start w-full m-0 pt-2  ">Best matches for you (200)</div>
+
      
       {/* Talent card */}
-      <div className="talents my-[5em] flex flex-col gap-[20px] w-full ">
+      <div className="talents mb-[5em] mt-[3em] flex flex-col gap-[20px] w-full relative ">
      {/* Job post */}
-    {filteredTalent.length > 0 ? (
-    filteredTalent.map((talent) => {
+    {talentData.map((talent) => {
           const ratingStyles = {
             "Top rated": {  ratingBgColor: "bg-[#4260DA]" },
             "Best match": {  ratingBgColor: "bg-[#C12D71]" },
@@ -247,7 +247,7 @@ return (
 
       </div>
 );
-}) ) : (<p className="text-center font-semibold text-xl lg:text-2xl" >Telent not found</p>)
+})
 }
        </div>
 
@@ -416,7 +416,7 @@ return (
     </div> )
 }
 
-export default ClientHomepage;
+export default Postedjob;
 
 
 

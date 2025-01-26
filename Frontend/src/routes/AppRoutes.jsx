@@ -6,10 +6,13 @@ import UserTypeSelection from '../components/Auth/UserTypeSelection';
 import FreelancerHome from '../components/Freelancer/FreelancerHome';
 import ClientHome from '../components/Client/homepage/ClientHomepage.jsx';
 import Createjob from '../components/Client/createjob/Createjob.jsx';
+import Postedjob from '../components/Client/createjob/PostedJob.jsx';
+import ViewProposal from '../components/Client/createjob/ViewProposal.jsx';
 import Dashboard from '../pages/Dashboard';
 import PrivateRoute from './PrivateRoutes';
 import FreeLancerProfile from '../components/Freelancer/FreeLancerProfile.jsx';
-import Onboarding from '../components/Freelancer/Onboarding'
+import Onboarding from '../components/Freelancer/Onboarding';
+import Invite from '../components/Client/createjob/Invite.jsx'
 
 const AppRoutes = () => {
 
@@ -45,6 +48,11 @@ const AppRoutes = () => {
           <Route path="/freelancer/onboarding" element={<Onboarding />} />
           <Route path="/client/home" element={<ClientHome />} />
           <Route path="/client/createjob" element={<Createjob />} />
+          <Route path="/client/postedjob" element={<Postedjob />} />
+          <Route path="/client/viewproposal" element={<ViewProposal />} />
+          <Route path="/client/invite" element={<Invite />} />
+
+
         {/* </Route> */}
 
         {/* Default Route */}
