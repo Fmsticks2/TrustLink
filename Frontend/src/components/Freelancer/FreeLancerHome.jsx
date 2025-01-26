@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 import SearchJobs from './homepage/SearchJobs';
 import JobList from './homepage/JobList';
 import ProfileSummary from './homepage/ProfileSummary';
@@ -8,7 +10,8 @@ import BidsOverview from './homepage/BidsOverview';
 import Home from './homepage/Home';
 import BgImg from '../../../public/bgImage.png';
 
-const FreeLancerHome = () => {        
+const FreeLancerHome = () => {
+  const location = useLocation();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('bestMatch');
   const [jobs, setJobs] = useState([
@@ -92,6 +95,12 @@ const FreeLancerHome = () => {
     }  
   ]);
 
+  useEffect(() => {
+    if (location.state?.successMessage) {
+      toast.success(location.state.successMessage);
+    }
+  }, [location.state]);
+
   const filteredJobs = jobs.filter(job => 
     job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     job.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -135,7 +144,6 @@ const FreeLancerHome = () => {
     updatedJobs[index].favorite = !updatedJobs[index].favorite;
     setJobs(updatedJobs);
   };
-
 
   return (
     <div className='bg-gray-100 overflow-hidden'>

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { CgGoogle } from "react-icons/cg";
 import { Link, useNavigate } from "react-router-dom";
+import { FaApple } from "react-icons/fa";
 
-function Login({ onSignIn }) {
+function Signup({ onSignIn }) {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
@@ -10,7 +12,7 @@ function Login({ onSignIn }) {
     // Send email to the backend for authentication
     console.log("Email Sign-In:", email);
     // onSignIn();
-    navigate("/user-type");
+    navigate('/freelancer/onboarding')
   };
 
   const handleGoogleSignIn = () => {
@@ -27,40 +29,31 @@ function Login({ onSignIn }) {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-6 text-center">Get your free account</h1>
-
+      <div className="bg-white shadow-lg rounded-lg py-10 sm:px-24 px-8 sm:w-[600px] w-full">
+        <h1 className="text-2xl font-semibold mb-6 text-center">Get your free account</h1>
      
         {/* OAuth Buttons */}
         <div className="space-y-4">
           <button
             onClick={handleGoogleSignIn}
-            className="w-full flex items-center justify-center space-x-3  bg-blue-500 text-white py-2 rounded-full hover:bg-blue-600 transition"
+            className="w-full flex items-center justify-center space-x-3  bg-blue-700 text-white py-2 rounded-full hover:bg-blue-600 transition"
           >
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-              alt="Google"
-              className="w-5 h-5"
-            />
+            <CgGoogle className="text-xl" />
             <span>Continue with gmail</span>
           </button>
           <button
             onClick={handleAppleSignIn}
             className="w-full flex items-center justify-center space-x-3 border border-black bg-white text-black py-2 rounded-full hover:bg-gray-800 hover:text-white transition"
           >
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-              alt="Apple"
-              className="w-5 h-5"
-            />
+            <FaApple className="text-xl" />
             <span>Continue with Apple ID</span>
           </button>
         </div>
 
         {/* Separator */}
         <div className="my-6 border-t border-gray-300 relative">
-          <span className="absolute top-[-10px] left-1/2 transform -translate-x-1/2 bg-white px-2 text-gray-600">
-            OR
+          <span className="absolute top-[-15px] left-1/2 transform -translate-x-1/2 bg-white px-2 text-gray-600 font-bold">
+            or
           </span>
         </div>
 
@@ -68,12 +61,12 @@ function Login({ onSignIn }) {
           {/* Email Sign-In */}
           <form onSubmit={handleEmailSignIn} className="space-y-4 ">
             <div>
-              <label className="block text-gray-700 font-medium mb-2">Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                placeholder='Email address'
               />
             </div>
           
@@ -84,7 +77,7 @@ function Login({ onSignIn }) {
             </button>
           </form>
 
-          <div className="flex gap-2 items-center justify-center my-6 flex-wrap">
+          <div className="flex gap-2 items-center justify-center mt-6 flex-wrap">
             <span>Already have an account? </span>
             <Link to={'/login'} className="text-[#FF4C4A]">
               Log in
@@ -95,4 +88,4 @@ function Login({ onSignIn }) {
   );
 }
 
-export default Login;
+export default Signup;
