@@ -47,6 +47,7 @@ const Onboarding = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 py-8">
+      {/* something */}
       <div className="max-w-2xl bg-white rounded-lg shadow-lg py-16 sm:px-24 px-8 sm:w-[600px] w-full">
         {currentStep > 2 && currentStep <= steps.length && (
           <div className="mb-8 space-y-6">

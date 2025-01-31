@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../components/Auth/Login';
 import Signup from '../components/Auth/Signup';
-import FreelancerHome from '../components/Freelancer/FreelancerHome';
+import FreelancerHome from '../components/Freelancer/FreelancerHome.jsx';
 import ClientHome from '../components/Client/homepage/ClientHomepage.jsx';
 import Createjob from '../components/Client/createjob/Createjob.jsx';
 import Postedjob from '../components/Client/createjob/PostedJob.jsx';
@@ -31,7 +31,7 @@ const AppRoutes = () => {
     setIsSignedIn(false);
     localStorage.removeItem('isSignedIn');
   };
-
+ 
   return (
     <Routes>
         {/* Public Routes */}
@@ -41,17 +41,18 @@ const AppRoutes = () => {
         {/* Protected Routes */}
         {/* <Route element={<PrivateRoute />}> */}
           <Route path="/dashboard" element={<Dashboard />} />
+
+          {/* Freelancer routes */}
           <Route path="/freelancer/home" element={<FreelancerHome />} />
           <Route path="/freelancer/profile" element={<FreeLancerProfile />} />
-          <Route path="/freelancer/onboarding" element={<Onboarding />} />
+          <Route path="/freelancer/onboarding/*" element={<Onboarding />} />
+
+          {/* Client routes */}
           <Route path="/client/home" element={<ClientHome />} />
           <Route path="/client/createjob" element={<Createjob />} />
           <Route path="/client/postedjob" element={<Postedjob />} />
           <Route path="/client/viewproposal" element={<ViewProposal />} />
           <Route path="/client/invite" element={<Invite />} />
-
-
-        {/* </Route> */}
 
         {/* Default Route */}
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
