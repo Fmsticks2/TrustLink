@@ -1,5 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
-require("@nomiclabs/hardhat-ethers");
+require("@nomicfoundation/hardhat-ethers");
 require("hardhat-deploy");
 
 /** @type import('hardhat/config').HardhatUserConfig */
