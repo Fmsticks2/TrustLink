@@ -12,7 +12,6 @@ import FreeLancerProfile from '../components/Freelancer/FreeLancerProfile.jsx';
 import Onboarding from '../components/Freelancer/Onboarding';
 import Invite from '../components/Client/createjob/Invite.jsx'
 import FreeLancerHome from '../components/Freelancer/FreeLancerHome.jsx';
-import Invite from '../components/Client/createjob/Invite.jsx';
 import Hire from '../components/Client/createjob/Hire.jsx';
 import WorkSubmission from '../components/Client/createjob/WorkSubmission.jsx';
 
