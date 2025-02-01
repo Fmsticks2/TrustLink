@@ -1,17 +1,18 @@
-import React from 'react';
 import { StarIcon } from '@heroicons/react/20/solid';
 
-const JobList = ({ jobs, toggleFavorite }) => {
+const JobList = ({ jobs, toggleFavorite, filterType }) => {
   return (
     <div className="grid grid-cols-1 gap-4 bg-white shadow-md h-fit">
       {jobs.map((job, index) => (
         <div key={index} className="p-8 border-b-2">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-bold">{job.title}</h3>
-            <StarIcon
-              onClick={() => toggleFavorite(index)}
-              className={`h-6 w-6 cursor-pointer ${job.favorite ? 'text-[#FF4C4A]' : 'text-gray-300'}`}
-            />
+            {filterType === 'recent' ? ('') 
+            : (<StarIcon
+                onClick={() => toggleFavorite(index)}
+                className={`h-6 w-6 cursor-pointer ${job.favorite ? 'text-[#FF4C4A]' : 'text-gray-300'}`}
+              />)
+            }
           </div>
           <div className="text-sm text-gray-500">
             {job.type} - {job.level} - Est. Budget: {job.budget} - Posted {job.posted}

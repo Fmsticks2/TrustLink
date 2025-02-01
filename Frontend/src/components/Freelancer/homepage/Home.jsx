@@ -1,5 +1,4 @@
-import React from 'react';
-import UserImg from '../../../../public/freelanceUserImg.png';
+import UserImg from '../../../assets/freelanceUserImg.png';
 
 const Home = () => {
   const currentDate = new Date();

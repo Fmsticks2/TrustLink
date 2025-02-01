@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import SearchJobs from './homepage/SearchJobs';
@@ -8,7 +8,8 @@ import MembershipCard from './homepage/MembershipCard';
 import ContractsOverview from './homepage/ContractsOverview';
 import BidsOverview from './homepage/BidsOverview';
 import Home from './homepage/Home';
-import BgImg from '../../../public/bgImage.png';
+import BgImg from '../../assets/bgImage.png';
+
 
 const FreeLancerHome = () => {
   const location = useLocation();
@@ -94,10 +95,15 @@ const FreeLancerHome = () => {
       favorite: false,
     }  
   ]);
+  const MAX_TOASTS = 1;
+  const [activeToasts, setActiveToasts] = useState(0)
 
   useEffect(() => {
     if (location.state?.successMessage) {
-      toast.success(location.state.successMessage);
+      if (activeToasts < MAX_TOASTS) {
+        setActiveToasts(prev => prev + 1)
+        toast.success(location.state.successMessage);
+      }
     }
   }, [location.state]);
 
@@ -128,6 +134,12 @@ const FreeLancerHome = () => {
     return new Date(Date.now() - hours * 60 * 60 * 1000);
   };
 
+  const toggleFavorite = (index) => {
+    const updatedJobs = [...jobs];
+    updatedJobs[index].favorite = !updatedJobs[index].favorite;
+    setJobs(updatedJobs);
+  };
+
   const sortedJobs = () => {
     switch (filterType) {
       case 'recent':
@@ -137,12 +149,6 @@ const FreeLancerHome = () => {
       default:
         return filteredJobs;
     }
-  };
-
-  const toggleFavorite = (index) => {
-    const updatedJobs = [...jobs];
-    updatedJobs[index].favorite = !updatedJobs[index].favorite;
-    setJobs(updatedJobs);
   };
 
   return (
@@ -181,7 +187,7 @@ const FreeLancerHome = () => {
                 </div>
               </div>
 
-              <JobList jobs={sortedJobs()} toggleFavorite={toggleFavorite} />
+              <JobList jobs={sortedJobs()} toggleFavorite={toggleFavorite} filterType={filterType} />
             </div>
           </div>
           <div className="h-fit grid grid-cols-1 lg:col-span-1 col-span-2 items-start justify-between gap-5">

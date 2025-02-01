@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SearchJobs = ({ searchTerm, setSearchTerm }) => {
   return (
     <div className="mt-4">

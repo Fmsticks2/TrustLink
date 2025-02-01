@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useOnboarding } from '../../context/OnboardingContext';
 import InitialSetup from './OnboardingSteps/InitialSetup';
 import Welcome from './OnboardingSteps/Welcome';
@@ -12,6 +11,7 @@ import HourlyRateStep from './OnboardingSteps/HourlyRateStep';
 import ContactInfoStep from './OnboardingSteps/ContactInfoStep';
 import SummaryStep from './OnboardingSteps/SummaryStep';
 import { CgChevronLeft } from 'react-icons/cg';
+import { useState } from 'react';
 
 const Onboarding = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -46,8 +46,7 @@ const Onboarding = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 py-8">
-      {/* something */}
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 py-8 mt-20">
       <div className="max-w-2xl bg-white rounded-lg shadow-lg py-16 sm:px-24 px-8 sm:w-[600px] w-full">
         {currentStep > 2 && currentStep <= steps.length && (
           <div className="mb-8 space-y-6">

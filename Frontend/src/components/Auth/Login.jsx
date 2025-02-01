@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { EnvelopeIcon, LockOpenIcon } from "@heroicons/react/20/solid";

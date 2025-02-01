@@ -1,4 +1,4 @@
-import backgroundImage from '../../../../public/gridImg.png'; 
+import backgroundImage from '../../../assets/gridImg.png';
 
 const MembershipCard = () => {
   return (
