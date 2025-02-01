@@ -38,9 +38,10 @@ If they don’t have an account, they can Sign Up.
 
 The backend stores new user data in the database.
 
-Users choose between Freelancer or Client.
+In the signup page, users choose between Freelancer or Client.
 
-Freelancers complete a multi-step form to provide details about their skills, experience, and preferences.
+Freelancers complete a multi-step form to provide details about their skills, experience, and preferences. I created a context(OnboardiingContext.jsx) to store this information which i used in the summary page after the multi-step form.
+Freelancers are redirected to the their homepage(freelancerHome) after sign-up
 
 Clients are redirected to their homepage after sign-up.
 
@@ -48,7 +49,7 @@ Clients are redirected to their homepage after sign-up.
 
 The backend verifies if a user is a Freelancer or Client and redirects accordingly:
 
-Freelancers → Profile Page
+Freelancers → Freelancer HomePage
 
 Clients → Client Homepage
 
@@ -69,8 +70,8 @@ npm install
 npm install react-router-dom
 npm install react-icons
 npm install react-hot-toast
-npm install headlessui/react
-npm install heroicons/react
+npm install headlessui
+npm install heroicons
 
 # Start the application:
 npm start
