@@ -1,5 +1,3 @@
-import React from 'react';
-
 const JobItem = ({ title, description, price, location }) => {
   return (
     <div className="border p-4 rounded-lg shadow-sm mb-4">

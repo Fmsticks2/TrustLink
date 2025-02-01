@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useOnboarding } from '../../../context/OnboardingContext';
 import { CgTrash } from 'react-icons/cg';
 

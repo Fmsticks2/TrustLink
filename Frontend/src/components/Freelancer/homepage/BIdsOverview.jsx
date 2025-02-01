@@ -1,5 +1,3 @@
-import React from 'react';
-
 const BidsOverview = () => {
   return (
     <div className="bg-white rounded-lg shadow-md flex flex-col">

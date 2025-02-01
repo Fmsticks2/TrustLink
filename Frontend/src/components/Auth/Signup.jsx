@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { CgGoogle } from "react-icons/cg";
 import { Link, useNavigate } from "react-router-dom";
 import { FaApple } from "react-icons/fa";

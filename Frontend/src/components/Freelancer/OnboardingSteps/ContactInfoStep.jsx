@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useOnboarding } from '../../../context/OnboardingContext';
 import { FaCheck } from 'react-icons/fa';
-import { CgSelect } from 'react-icons/cg';
 import { Listbox } from '@headlessui/react';
 
 const ContactInfoStep = ({ nextStep }) => {

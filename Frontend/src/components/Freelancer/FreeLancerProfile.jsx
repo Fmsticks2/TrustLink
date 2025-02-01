@@ -1,4 +1,3 @@
-import React from 'react';
 import UserInfo from './profilePage/UserInfo';
 import Verification from './profilePage/Verification';
 import Portfolio from './profilePage/Portfolio';
@@ -6,7 +5,7 @@ import Reviews from './profilePage/Reviews';
 import Skills from './profilePage/Skills';
 import Education from './profilePage/Education';
 import Experiences from './profilePage/Experiences';
-import BgImg from '../../../public/bgImage.png';
+import BgImg from '../../assets/bgImage.png';
 
 const FreeLancerProfile = () => {
   return (
@@ -26,7 +25,7 @@ const FreeLancerProfile = () => {
           </div>
           
           <div className="h-[50rem] grid lg:grid-rows-2 grid-cols-1 lg:col-span-1 col-span-2 items-start justify-between gap-5">
-            <Verification className={'rows-start-1'} />
+            <Verification />
             <Skills />
           </div>
         </div>

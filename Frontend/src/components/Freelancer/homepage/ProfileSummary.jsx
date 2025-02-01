@@ -1,5 +1,4 @@
-import React from 'react';
-import UserImg from '../../../../public/user.png';
+import UserImg from '../../../assets/user.png';
 import { Link } from 'react-router-dom';
 
 const ProfileSummary = () => {

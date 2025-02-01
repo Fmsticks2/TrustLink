@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../components/Auth/Login';
 import Signup from '../components/Auth/Signup';
-import FreelancerHome from '../components/Freelancer/FreelancerHome';
 import ClientHome from '../components/Client/homepage/ClientHomepage.jsx';
 import Createjob from '../components/Client/createjob/Createjob.jsx';
 import Postedjob from '../components/Client/createjob/PostedJob.jsx';
 import ViewProposal from '../components/Client/createjob/ViewProposal.jsx';
 import Dashboard from '../pages/Dashboard';
-import PrivateRoute from './PrivateRoutes';
+// import PrivateRoute from './PrivateRoutes';
 import FreeLancerProfile from '../components/Freelancer/FreeLancerProfile.jsx';
 import Onboarding from '../components/Freelancer/Onboarding';
+import Invite from '../components/Client/createjob/Invite.jsx'
+import FreeLancerHome from '../components/Freelancer/FreeLancerHome.jsx';
 import Invite from '../components/Client/createjob/Invite.jsx';
 import Hire from '../components/Client/createjob/Hire.jsx';
 import WorkSubmission from '../components/Client/createjob/WorkSubmission.jsx';
@@ -29,11 +30,11 @@ const AppRoutes = () => {
     localStorage.setItem('isSignedIn', 'true');
   };
 
-  const handleSignOut = () => {
-    setIsSignedIn(false);
-    localStorage.removeItem('isSignedIn');
-  };
-
+  // const handleSignOut = () => {
+  //   setIsSignedIn(false);
+  //   localStorage.removeItem('isSignedIn');
+  // };
+ 
   return (
     <Routes>
         {/* Public Routes */}
@@ -43,9 +44,13 @@ const AppRoutes = () => {
         {/* Protected Routes */}
         {/* <Route element={<PrivateRoute />}> */}
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/freelancer/home" element={<FreelancerHome />} />
+
+          {/* Freelancer routes */}
+          <Route path="/freelancer/home" element={<FreeLancerHome />} />
           <Route path="/freelancer/profile" element={<FreeLancerProfile />} />
-          <Route path="/freelancer/onboarding" element={<Onboarding />} />
+          <Route path="/freelancer/onboarding/*" element={<Onboarding />} />
+
+          {/* Client routes */}
           <Route path="/client/home" element={<ClientHome />} />
           <Route path="/client/createjob" element={<Createjob />} />
           <Route path="/client/postedjob" element={<Postedjob />} />
@@ -55,9 +60,6 @@ const AppRoutes = () => {
           <Route path="/client/worksubmission" element={<WorkSubmission />} />
 
 
-
-
-        {/* </Route> */}
 
         {/* Default Route */}
         <Route path="/" element={<Navigate to="/dashboard" replace />} />

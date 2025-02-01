@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaCloudDownloadAlt, FaRegFileAlt, FaXingSquare } from 'react-icons/fa';
 
 const ContractsOverview = () => {

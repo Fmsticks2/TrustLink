@@ -1,53 +1,69 @@
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import AppRoutes from './routes/AppRoutes';
 import Layout from './components/Shared/Layout';
 import { OnboardingProvider } from './context/OnboardingContext';
 import { Toaster } from 'react-hot-toast';
+import { useEffect } from 'react';
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 
 function App() {
   return (
     <BrowserRouter>
       <OnboardingProvider>
         <Layout>
+        <ScrollToTop />
           <Toaster
+            position="top-right"
+            reverseOrder={false}
             toastOptions={{
               // Define default options
-              duration: 4000,
+              duration: 3000,
               style: {
                 background: '#333',
                 color: '#fff',
-                fontSize: '11px', // Reduce font size
-                width: '500px', 
+                fontSize: '14px', // Reduce font size
+                width: '250px', // Reduce width size
               },
               // Define custom options for different types of toasts
               success: {
-                duration: 4000,
+                duration: 3000,
                 style: {
-                  background: 'white',
-                  color: 'black',
-                  fontSize: '11px', 
-                  width: '500px', 
+                  background: 'black',
+                  color: '#fff',
+                  fontSize: '14px', // Reduce font size
+                  width: '250px', // Reduce width size
                 },
                 iconTheme: {
                   primary: '#fff',
                   secondary: 'green',
-                  height: '20px', 
-                  width: '20px',                 },
+                  height: '30px', // Increase icon size
+                  width: '30px', // Increase icon size
+                },
               },
               error: {
-                duration: 5000,
+                duration: 2000,
                 style: {
-                  background: 'red',
+                  background: 'black',
                   color: '#fff',
-                  fontSize: '14px', 
-                  width: '250px', 
+                  fontSize: '14px', // Reduce font size
+                  width: '250px', // Reduce width size
                 },
                 iconTheme: {
                   primary: '#fff',
                   secondary: 'red',
-                  height: '30px', 
-                  width: '30px', 
+                  height: '30px', // Increase icon size
+                  width: '30px', // Increase icon size
                 },
               },
             }}

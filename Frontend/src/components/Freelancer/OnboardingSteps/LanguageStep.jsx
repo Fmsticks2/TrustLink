@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useOnboarding } from '../../../context/OnboardingContext';
 import { Listbox } from '@headlessui/react';
 import { FaCheck } from 'react-icons/fa';
