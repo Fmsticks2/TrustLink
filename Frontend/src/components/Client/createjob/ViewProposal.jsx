@@ -87,7 +87,7 @@ function ViewProposal () {
               <div className='bg-[#2942A5] h-[400px]' />
               <img src={BgImg} className='absolute top-0 right-0 w-fit' alt="" />
             </div>
-        <div className="max-w-7xl mx-auto  -mt-[28%] xs:px-4 py-8 lg:p-[4vw] relative z-10">
+        <div className="max-w-7xl mx-auto -mt-[90%]  px-4 py-8 lg:p-[4vw] lg:-mt-[28%] relative z-10">
           {/* Back button */}
           <div className="mb-4">
             <button className="text-white text-lg"><Link to={'/client/postedjob'}>&#8249; Back</Link> </button>
@@ -96,11 +96,11 @@ function ViewProposal () {
           {/* Header */}
           <div className="flex justify-between items-center mb-6 text-white">
             <h1 className="text-2xl font-bold">My contracts</h1>
-            <span>Total earnings: <strong>$10.00 USD</strong></span>
+            <span>Total earnings: <strong>$10.00</strong></span>
           </div>
   
           {/* Tabs */}
-          <div className="flex items-center gap-6 text-gray-300 mb-6">
+          <div className="flex items-center gap-2 lg:gap-6 text-gray-300 mb-6">
             <span className="border-b-2 border-transparent cursor-pointer hover:text-white hover:border-white">
               Active contracts (02)
             </span>
@@ -152,7 +152,7 @@ return (
            <div className="skills flex flex-wrap gap-3 justify-start items-center ">
             {talent.skills.map((skill) => (
               <div key={skill} className="rounded-full flex justify-center items-center bg-[#F0F0F0] text-
-              [#0000] h-[28px] w-[131px] px-4 py-2 text-sm">{skill}</div>
+              [#0000] h-[28px] w-[131px] lg:px-4 lg:py-2 text-sm">{skill}</div>
             ))}
             <div className="more text-[#FF4C4A]">more</div>
            </div>

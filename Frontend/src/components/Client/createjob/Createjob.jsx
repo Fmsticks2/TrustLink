@@ -30,13 +30,13 @@ function Createjob() {
 
   return (
     <div className="container w-full mx-auto bg-gray-100   flex justify-center items-center">
-      <div className="contain flex justify-between p-8 mt-[4em] relative  w-[80%] bg-white rounded-lg shadow-md  ">
-      <div className="back  flex justify-center items-center top-[19px] absolute cursor-pointer ">
+      <div className="contain flex flex-col justify-between items-center   p-4  mt-[4em] relative w-[90%] lg:items-start lg:flex-row lg:p-8 lg:w-[80%] bg-white rounded-lg shadow-md  ">
+      <div className="back  flex justify-center items-center top-[19px] left-4 absolute cursor-pointer  ">
           <Link to={'/client/home'}>
-           <span className=" text-[2em] p-1">&#8249;</span>
-          <span className="text-xl">Back</span> </Link>
+           <span className=" text-[1em] lg:text-[2em] p-1">&#8249;</span>
+          <span className=" text-lg lg:text-xl">Back</span> </Link>
         </div>
-                <form className="max-w-lg  mt-[2em] p-4  w-full">
+                <form className="max-w-lg  flex flex-col gap-4 mt-[2em] p-4  w-full">
           {/* Job Title */}
           <div className="mb-4">
             <label className="block font-semibold mb-2" htmlFor="jobTitle">
@@ -45,7 +45,7 @@ function Createjob() {
             <input
               type="text"
               id="jobTitle"
-              placeholder="E.g., Need Web Developer for Figma"
+              placeholder="E.g,Need Web Developer for Figma"
               className="w-full border p-2 rounded"
             />
           </div>
@@ -80,10 +80,10 @@ function Createjob() {
               {skills.map((skill, index) => (
                 <span
                   key={index}
-                  className="bg-red-200 text-red-800 px-2 py-1 mt-2 rounded-lg cursor-pointer"
+                  className="bg-gray-100 text-black text-opacity-60 px-2 py-1 mt-2 rounded-lg cursor-pointer"
                   onClick={() => handleSkillRemove(skill)}
                 >
-                  {skill}
+                  <div>{skill} <span className="text-black">X</span></div> 
                 </span>
               ))}
             </div>
@@ -137,9 +137,9 @@ function Createjob() {
           {/* Budget */}
           <div className="mb-4">
             <label className="block font-semibold mb-2">Tell Us About Your Budget</label>
-            <div className="flex gap-4 mb-2">
+            <div className="flex gap-4 mb-2 justify-around">
               <label >
-                <div className={`flex flex-col justify-center items-center w-[190px] h-[94px] border rounded-lg  ${
+                <div className={`flex flex-col justify-center items-center w-[120px] h-[70px] lg:w-[190px] lg:h-[94px] border rounded-lg  ${
     budgetType === "fixed" ? "border-[#FF4C4A]" : "border-gray-300"
   }`}>  
                   <input
@@ -157,7 +157,7 @@ function Createjob() {
                 </div>
               </label>
               <label>
-                <div  className={`flex flex-col justify-center items-center w-[190px] h-[94px] border rounded-lg ${
+                <div  className={`flex flex-col justify-center items-center w-[120px] h-[70px] lg:w-[190px] lg:h-[94px] border rounded-lg ${
     budgetType === "hourly" ? "border-[#FF4C4A]" : "border-gray-300"
   }`} >  <input
                   type="radio"
@@ -224,8 +224,8 @@ function Createjob() {
         <button
           type="submit"
           className="rounded-full bg-[#FF4C4A] w-[190px] h-[39px] text-white font-bold text-base"
-        >
-          Post job Now
+        ><Link to={'/client/postedjob'}>
+          Post job Now </Link>
         </button>
         <button
           type="button"
@@ -236,7 +236,7 @@ function Createjob() {
       </div>
     </form> 
     
-    <div className="btns mt-[2em] flex flex-col gap-4">
+    <div className="btns mt-[2em] hidden lg:flex flex-col gap-4">
     <button
           type="submit"
           className="rounded-full bg-[#FF4C4A] w-[190px] h-[39px] text-white font-bold text-base"

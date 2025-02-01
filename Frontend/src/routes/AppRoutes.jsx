@@ -11,7 +11,9 @@ import Dashboard from '../pages/Dashboard';
 import PrivateRoute from './PrivateRoutes';
 import FreeLancerProfile from '../components/Freelancer/FreeLancerProfile.jsx';
 import Onboarding from '../components/Freelancer/Onboarding';
-import Invite from '../components/Client/createjob/Invite.jsx'
+import Invite from '../components/Client/createjob/Invite.jsx';
+import Hire from '../components/Client/createjob/Hire.jsx';
+import WorkSubmission from '../components/Client/createjob/WorkSubmission.jsx';
 
 const AppRoutes = () => {
 
@@ -49,6 +51,10 @@ const AppRoutes = () => {
           <Route path="/client/postedjob" element={<Postedjob />} />
           <Route path="/client/viewproposal" element={<ViewProposal />} />
           <Route path="/client/invite" element={<Invite />} />
+          <Route path="/client/hire" element={<Hire />} />
+          <Route path="/client/worksubmission" element={<WorkSubmission />} />
+
+
 
 
         {/* </Route> */}
