@@ -87,7 +87,7 @@ function ViewProposal () {
               <div className='bg-[#2942A5] h-[400px]' />
               <img src={BgImg} className='absolute top-0 right-0 w-fit' alt="" />
             </div>
-        <div className="max-w-7xl mx-auto -mt-[90%]  px-4 py-8 lg:p-[4vw] lg:-mt-[28%] relative z-10">
+        <div className="max-w-7xl mx-auto -mt-[85%]  px-4 py-8 lg:p-[4vw] lg:-mt-[25%] relative z-10">
           {/* Back button */}
           <div className="mb-4">
             <button className="text-white text-lg"><Link to={'/client/postedjob'}>&#8249; Back</Link> </button>

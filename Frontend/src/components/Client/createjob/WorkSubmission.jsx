@@ -43,12 +43,12 @@ return (
     </div>
 
     {/* Main Content */}
-    <div className="max-w-6xl mx-auto -mt-[90%]  p-4 lg:-mt-[25%]  relative">
+    <div className="max-w-6xl mx-auto -mt-[80%]  p-4 lg:-mt-[20%]  relative">
       {/* Back Button */}
       <div className="mb-6">
         <button className="text-white text-lg"> <Link to={'/client/hire'}>&#8249; Back</Link></button>
       </div>
-
+ 
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">My contracts</h1>

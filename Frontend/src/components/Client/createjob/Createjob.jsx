@@ -30,7 +30,7 @@ function Createjob() {
 
   return (
     <div className="container w-full mx-auto bg-gray-100   flex justify-center items-center">
-      <div className="contain flex flex-col justify-between items-center   p-4  mt-[4em] relative w-[90%] lg:items-start lg:flex-row lg:p-8 lg:w-[80%] bg-white rounded-lg shadow-md  ">
+      <div className="contain flex flex-col justify-between items-center   p-4 my-[6em]  lg:my-[8em]  relative w-[90%] lg:items-start lg:flex-row lg:p-8 lg:w-[80%] bg-white rounded-lg shadow-md  ">
       <div className="back  flex justify-center items-center top-[19px] left-4 absolute cursor-pointer  ">
           <Link to={'/client/home'}>
            <span className=" text-[1em] lg:text-[2em] p-1">&#8249;</span>

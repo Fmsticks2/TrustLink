@@ -36,7 +36,7 @@ const Hire = () => {
   
     return (
      <div className="container w-full mx-auto bg-gray-100   flex justify-center items-center">
-          <div className="contain flex flex-col justify-between p-4 mt-[4em] relative  w-[90%] bg-white rounded-lg shadow-md lg:items-start lg:flex-row lg:p-8 lg:w-[80%]  ">
+          <div className="contain flex flex-col justify-between p-4 my-[6em]  relative  w-[90%] bg-white rounded-lg shadow-md lg:my-[10em] lg:items-start lg:flex-row lg:p-8 lg:w-[80%]  ">
           <div className="back  flex justify-center items-center top-[19px] absolute cursor-pointer ">
               <Link to={'/client/invite'}>
                <span className=" text-[1em] p-1 lg:text-[2em]">&#8249;</span>

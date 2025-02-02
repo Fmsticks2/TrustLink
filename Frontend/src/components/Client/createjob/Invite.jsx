@@ -116,7 +116,7 @@ const Invite = () => {
 const currentDate = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
   return (
-    <div className='bg-gray-100 overflow-hidden min-h-screen  lg:py-[2em] '>
+    <div className='bg-gray-100 overflow-hidden min-h-screen py-[4em]  lg:py-[6em] '>
       <div className="max-w-7xl mx-auto  lg:px-4 py-8 relative z-10">
         <div className=" flex flex-col  lg:grid lg:grid-cols-3 gap-6 justify-center items-start">
 
@@ -126,7 +126,7 @@ const currentDate = new Date().toLocaleTimeString([], { hour: '2-digit', minute:
 
      {/* Back button */}
      <div className="">
-            <button className="text-black text-lg ml-6 mt-2 "><Link to={'/client/viewproposal'}>&#8249; Back</Link> </button>
+            <button className="text-black text-lg lg:ml-6 lg:mt-2 "><Link to={'/client/viewproposal'}>&#8249; Back</Link> </button>
           </div>
 
 
