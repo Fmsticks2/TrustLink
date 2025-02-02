@@ -1,5 +1,4 @@
-import React from 'react'
-import ReviewImg from '../../../../public/reviewImg.png'
+import ReviewImg from '../../../assets/reviewImg.png';
 
 const Reviews = () => {
 

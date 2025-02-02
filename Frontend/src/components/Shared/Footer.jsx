@@ -1,5 +1,3 @@
-import React from "react";
-
 function Footer() {
   return (
     <div className="footer w-full h-auto  bottom-0">

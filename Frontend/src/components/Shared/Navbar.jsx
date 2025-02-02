@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {BellIcon, MagnifyingGlassIcon} from '@heroicons/react/20/solid';
 import { Menu } from '@headlessui/react';
 import { Link, useNavigate } from 'react-router-dom';
-import UserImg from '../../../public/profile.svg'
+import UserImg from '../../assets/profile.svg';
 import { CgLogOut } from 'react-icons/cg';
 import { useOnboarding } from '../../context/OnboardingContext';
 import toast from 'react-hot-toast';

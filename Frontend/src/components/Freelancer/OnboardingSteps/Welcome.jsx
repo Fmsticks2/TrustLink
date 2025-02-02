@@ -1,6 +1,5 @@
-import React from 'react';
 import { useOnboarding } from '../../../context/OnboardingContext';
-import WelcomeImg from '../../../../public/WelcomeImg.png'
+import WelcomeImg from '../../../assets/WelcomeImg.png'
 
 const Welcome = ({ nextStep }) => {
   const { formData } = useOnboarding();

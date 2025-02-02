@@ -119,7 +119,7 @@ const [searchTerm, setSearchTerm] = useState('');
   );
 
 return ( 
-    <div className=" Clienthomepage min-h-screen w-full flex flex-col   gap-4 items-center justify-center px-2 lg:justify-around bg-gray-100 lg:px-4 lg:flex-row lg:items-start   ">
+    <div className=" Clienthomepage min-h-screen w-full flex flex-col   gap-4 items-center justify-center px-2  lg:justify-around bg-gray-100 lg:px-4 lg:flex-row lg:items-start   ">
 
       {/*Left wing*/}
        <div className=" flex flex-col items-center justify-center w-full gap-6 mt-[7em] lg:w-[60vw]  lg:ml-[2vw] lg:mt-0 ">

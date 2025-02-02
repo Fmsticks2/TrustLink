@@ -1,5 +1,4 @@
-import React from 'react';
-import UserImg from '../../../../public/user.png'
+import UserImg from '../../../assets/user.png';
 import { ClockIcon, CurrencyDollarIcon, StarIcon } from '@heroicons/react/20/solid';
 
 const UserInfo = ({className}) => {

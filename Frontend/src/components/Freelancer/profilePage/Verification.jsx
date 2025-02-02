@@ -1,9 +1,8 @@
 import { CurrencyDollarIcon, EnvelopeIcon, PhoneIcon, UsersIcon } from '@heroicons/react/20/solid';
-import React from 'react';
 import { FaFacebookF } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const Verification = ({className}) => {
+const Verification = ({}) => {
 
   const verificationItems = [
     {

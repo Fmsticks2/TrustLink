@@ -1,7 +1,7 @@
 import React from 'react'
-import Portfolio1 from '../../../../public/portfolio1.png'
-import Portfolio2 from '../../../../public/portfolio2.png'
-import Portfolio3 from '../../../../public/portfolio3.png'
+import Portfolio1 from '../../../assets/portfolio1.png';
+import Portfolio2 from '../../../assets/portfolio2.png';
+import Portfolio3 from '../../../assets/portfolio3.png';
 import { TrashIcon } from '@heroicons/react/20/solid'
 
 
