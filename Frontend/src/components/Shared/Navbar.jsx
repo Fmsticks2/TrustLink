@@ -24,20 +24,21 @@ const Navbar = () => {
   };
 
   const formType = () => {
-    if (!formData.userType) {
-      toast.dismiss(); // Dismiss any existing toasts
-      toast.error('Please login');
-      return;
-    } else if (formData.userType === 'client') {
-      navigate('/client/invite');
-    } else if (formData.userType === 'freelancer') {
-      navigate('/freelancer/profile');
-    }
+    // if (!formData.userType) {
+    //   toast.dismiss(); // Dismiss any existing toasts
+    //   toast.error('Please login');
+    //   return;
+    // } else if (formData.userType === 'client') {
+    //   navigate('/client/invite');
+    // } else if (formData.userType === 'freelancer') {
+    //   navigate('/freelancer/profile');
+    // }
+    navigate('/freelancer/profile');
   };
 
   return (
     <nav className="fixed top-0 w-full bg-[#1F1F1F] text-white z-50 shadow-lg">
-      <div className="container mx-auto flex justify-between items-center pt-8 pb-5 ">
+      <div className="container mx-auto flex justify-between items-center pt-8 pb-5 px-5">
 
       {/* Left Section */}
         <div className="left flex items-center gap-4">
