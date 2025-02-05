@@ -105,7 +105,7 @@ const FreeLancerHome = () => {
         toast.success(location.state.successMessage);
       }
     }
-  }, [location.state]);
+  }, [location.state, activeToasts]);
 
   const filteredJobs = jobs.filter(job => 
     job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
