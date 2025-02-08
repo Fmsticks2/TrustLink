@@ -66,6 +66,7 @@ git clone https://github.com/Fmsticks2/TrustLink
 cd Frontend
 
 # Install dependencies:
+npm create vite@latest
 npm install
 npm install react-router-dom
 npm install react-icons
