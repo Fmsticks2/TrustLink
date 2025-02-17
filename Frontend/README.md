@@ -74,5 +74,11 @@ npm install react-hot-toast
 npm install headlessui
 npm install heroicons
 
+npm install embla-carousel-react
+npm install @radix-ui/react-slot
+npm install tailwind-merge
+npm install class-variance-authority
+npm install swiper
+
 # Start the application:
 npm start
