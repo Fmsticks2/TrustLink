@@ -14,24 +14,24 @@ import { CgChevronLeft } from 'react-icons/cg';
 import { useState } from 'react';
 
 const Onboarding = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
   const { formData } = useOnboarding();
 
   const steps = [
-    InitialSetup,
-    Welcome,
-    TitleStep,
-    ExperienceStep,
-    EducationStep,
-    LanguageStep,
-    SkillsStep,
-    ProfileDescriptionStep,
-    HourlyRateStep,
-    ContactInfoStep,
-    SummaryStep
+    InitialSetup, // 0
+    Welcome, // 1
+    TitleStep, // 2
+    ExperienceStep, // 3
+    EducationStep, // 4
+    LanguageStep, // 5
+    SkillsStep, // 6
+    ProfileDescriptionStep, // 7
+    HourlyRateStep, // 8
+    ContactInfoStep, // 9
+    SummaryStep // 10
   ];
 
-  const CurrentStepComponent = steps[currentStep - 1];
+  const CurrentStepComponent = steps[currentStep];
 
   const nextStep = () => {
     setCurrentStep(prev => prev + 1);
@@ -42,13 +42,13 @@ const Onboarding = () => {
   };
 
   const getProgressWidth = () => {
-    return `${((currentStep - 1) / (steps.length - 1)) * 100}%`;
+    return `${((currentStep) / (steps.length - 1)) * 100}%`;
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 py-8 mt-20">
       <div className="max-w-2xl bg-white rounded-lg shadow-lg py-16 sm:px-24 px-8 sm:w-[600px] w-full">
-        {currentStep > 2 && currentStep <= steps.length && (
+        {currentStep > 1 && currentStep <= steps.length && (
           <div className="mb-8 space-y-6">
             <div className='flex'>
               <div className="flex items-center space-x-2">
@@ -56,7 +56,7 @@ const Onboarding = () => {
                   {formData.email?.[0]?.toUpperCase() || 'M'}
                 </div>
               </div>
-              <h1 className='capitalize font-semibold mx-auto text-lg'>{(currentStep-1) > 9 ? 'profile summary' : 'create profile'}</h1>
+              <h1 className='capitalize font-semibold mx-auto text-lg'>{(currentStep) > 9 ? 'profile summary' : 'create profile'}</h1>
             </div>
             <div className="flex items-center justify-between mb-2 -mx-2">
               <button 
@@ -65,7 +65,7 @@ const Onboarding = () => {
               >
                 <CgChevronLeft className='text-3xl' />
               </button>
-              <span className="text-sm text-black">{currentStep - 2}/9</span>
+              <span className="text-sm text-black">{currentStep - 1}/9</span>
             </div>
             
             <div className="w-full bg-gray-100 rounded-full h-1">
