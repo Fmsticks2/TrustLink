@@ -6,8 +6,10 @@ import Dashboard_Nav from './Dashboard_Nav';
 
 const Layout = ({ children }) => {
   const location = useLocation();
+
   const topBarRoutes = ['/login', '/signup', '/freelancer/onboarding'];
-  const dashboardNavRoutes = ['/dashboard'];
+  const dashboardNavRoutes = ['/dashboard', '/', '*'];
+
   const isTopBarPage = topBarRoutes.includes(location.pathname);
   const isDashboardNavPage = dashboardNavRoutes.includes(location.pathname);
   const isNavbarPage = !isTopBarPage && !isDashboardNavPage;
