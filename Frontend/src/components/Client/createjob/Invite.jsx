@@ -1,12 +1,12 @@
 import React from 'react';
-import UserImg from '../../../../public/user.png'
+import UserImg from '../../../assets/user.png'
 import { ClockIcon, CurrencyDollarIcon, StarIcon, EnvelopeIcon, PhoneIcon, UsersIcon } from '@heroicons/react/20/solid';
 import { FaFacebookF } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Portfolio1 from '../../../../public/portfolio1.png';
-import Portfolio2 from '../../../../public/portfolio2.png';
-import Portfolio3 from '../../../../public/portfolio3.png';
-import ReviewImg from '../../../../public/reviewImg.png'
+import Portfolio1 from '../../../assets/portfolio1.png';
+import Portfolio2 from '../../../assets/portfolio2.png';
+import Portfolio3 from '../../../assets/portfolio3.png';
+import ReviewImg from '../../../assets/reviewImg.png';
 
 
 

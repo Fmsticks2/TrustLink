@@ -1,4 +1,4 @@
-import BgImg from '../../../../public/bgImage.png';
+import BgImg from '../../../assets/bgImage.png';
 import { Link } from 'react-router-dom';
 import  { useState, useEffect } from "react";
 
