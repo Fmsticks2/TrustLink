@@ -2,21 +2,21 @@ import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import {MagnifyingGlassIcon} from '@heroicons/react/20/solid';
 import { useNavigate } from "react-router-dom";
-import nojob from '../../../../public/nojob.svg';
-import backgroundImage from '../../../../public/gridImg.png';
-import profile from '../../../../public/profile.svg'; 
-import mariya from '../../../../public/mariya.svg';
-import star from '../../../../public/star.svg';
-import dullstar from '../../../../public/dullstar.svg'; 
-import flag from '../../../../public/flag.svg';
-import active from '../../../../public/active.svg'; 
-import complete from '../../../../public/complete.svg'; 
-import cancled from '../../../../public/cancled.svg'; 
-import filter from '../../../../public/filter.svg';
-import identitybody from '../../../../public/identitybody.svg';
-import identity from '../../../../public/identity.svg';
-import phone from '../../../../public/phone.svg'
-import email from '../../../../public/email.svg'
+import nojob from '../../../assets/nojob.svg';
+import backgroundImage from '../../../assets/gridImg.png';
+import profile from '../../../assets/profile.svg'; 
+import mariya from '../../../assets/mariya.svg';
+import star from '../../../assets/star.svg';
+import dullstar from '../../../assets/dullstar.svg'; 
+import flag from '../../../assets/flag.svg';
+import active from '../../../assets/active.svg'; 
+import complete from '../../../assets/complete.svg'; 
+import cancled from '../../../assets/cancled.svg'; 
+import filter from '../../../assets/filter.svg';
+import identitybody from '../../../assets/identitybody.svg';
+import identity from '../../../assets/identity.svg';
+import phone from '../../../assets/phone.svg'
+import email from '../../../assets/email.svg'
 
 
 

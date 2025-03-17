@@ -1,9 +1,9 @@
-import BgImg from '../../../../public/bgImage.png';
-import profile from '../../../../public/profile.svg'; 
-import mariya from '../../../../public/mariya.svg';
-import star from '../../../../public/star.svg';
-import dullstar from '../../../../public/dullstar.svg'; 
-import flag from '../../../../public/flag.svg';
+import BgImg from '../../../assets/bgImage.png';
+import profile from '../../../assets/profile.svg'; 
+import mariya from '../../../assets/mariya.svg';
+import star from '../../../assets/star.svg';
+import dullstar from '../../../assets/dullstar.svg'; 
+import flag from '../../../assets/flag.svg';
 import { Link } from 'react-router-dom';
 
 

@@ -61,8 +61,8 @@ const AppRoutes = () => {
 
 
         {/* Default Route */}
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/" element={<Dashboard />} />
+        <Route path="*" element={<Dashboard />} />
     </Routes>
   );
 };

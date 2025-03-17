@@ -18,7 +18,7 @@ const JobList = ({ jobs, toggleFavorite, filterType }) => {
             {job.type} - {job.level} - Est. Budget: {job.budget} - Posted {job.posted}
           </div>
           <p className="mt-2">{job.description}</p>
-          <div className="flex items-center mt-2">
+          <div className="flex flex-wrap items-center mt-2">
             <span className="font-semibold">{job.paymentType}</span>
             <div className="flex items-center ml-2">
               <span className='flex'>

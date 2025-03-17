@@ -1,4 +1,5 @@
 import { useOnboarding } from '../../../context/OnboardingContext';
+import { useState } from 'react';
 
 const SkillsStep = ({ nextStep }) => {
   const { formData, updateFormData } = useOnboarding();

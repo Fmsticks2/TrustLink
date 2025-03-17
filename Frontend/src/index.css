@@ -9,8 +9,9 @@ body {
 }
 /* Scrollbar Track */
 .scrollbar-custom::-webkit-scrollbar {
-  width: 6px; /* Horizontal scrollbar height */
+  width: 8px; /* Horizontal scrollbar height */
   background: transparent; /* Background of the entire scrollbar */
+  height: 7px;
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb {
@@ -24,4 +25,8 @@ body {
 
 .scrollbar-custom::-webkit-scrollbar-track {
   background-color: inherit; /* Match the background of the table/page */
+}
+
+.custom-swiper {
+  overflow: visible !important;
 }
