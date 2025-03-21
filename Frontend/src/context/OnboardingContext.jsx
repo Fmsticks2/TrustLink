@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 
-const OnboardingContext = createContext();
+const OnboardingContext = createContext(); // creating a context 
 
 export const OnboardingProvider = ({ children }) => {
   const [formData, setFormData] = useState({
@@ -23,8 +23,8 @@ export const OnboardingProvider = ({ children }) => {
       zipCode: '',
       phoneNumber: '',
       phoneCode: '',
-    },
-    profileImage: null,
+    },      
+    profileImage: '',
     hasNoExperience: false,
     hasNoEducation: false,
   });
@@ -34,10 +34,11 @@ export const OnboardingProvider = ({ children }) => {
   };
 
   return (
-    <OnboardingContext.Provider value={{ formData, updateFormData }}>
+    <OnboardingContext.Provider value={{ formData, updateFormData }}> 
+    {/* // wrapping the children(tree os components that needs the state context) with the context provider */}
       {children}
     </OnboardingContext.Provider>
   );
 };
 
-export const useOnboarding = () => useContext(OnboardingContext); 
+export const useOnboarding = () => useContext(OnboardingContext); // accessing the formdata context in all components

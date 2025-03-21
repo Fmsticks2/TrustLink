@@ -28,7 +28,7 @@ const InitialSetup = ({ nextStep }) => {
     if (formData.userType === 'freelancer' && !formData.lastName) newErrors.lastName = 'Last name is required';
     if ((formData.userType === 'freelancer' && !formData.country) || formData.country === 'Choose your country') newErrors.country = 'Country is required';
 
-    if (Object.keys(newErrors).length > 0) {
+    if (Object.keys(newErrors).length > 0) { // 
       setErrors(newErrors);
       return;
     }

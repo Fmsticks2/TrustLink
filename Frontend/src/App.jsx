@@ -1,5 +1,5 @@
 import './index.css';
-import { BrowserRouter, useLocation } from 'react-router-dom';
+import { HashRouter as Router, useLocation } from 'react-router-dom';
 import AppRoutes from './routes/AppRoutes';
 import Layout from './components/Shared/Layout';
 import { OnboardingProvider } from './context/OnboardingContext';
@@ -19,7 +19,7 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <OnboardingProvider>
         <Layout>
         <ScrollToTop />
@@ -71,7 +71,7 @@ function App() {
           <AppRoutes />
         </Layout>
       </OnboardingProvider>
-    </BrowserRouter>
+    </Router>
   );
 }
 

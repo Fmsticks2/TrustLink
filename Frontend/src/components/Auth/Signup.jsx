@@ -46,7 +46,7 @@ function Signup({ onSignIn }) {
             className="w-full flex items-center justify-center space-x-3 border border-black bg-white text-black py-2 rounded-full hover:bg-gray-800 hover:text-white transition"
           >
             <FaApple className="text-xl" />
-            <span>Continue with Apple ID</span>
+            <span>Connect Wallet</span>
           </button>
         </div>
 

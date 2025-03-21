@@ -36,33 +36,33 @@ const AppRoutes = () => {
  
   return (
     <Routes>
-        {/* Public Routes */}
-        <Route path="/login" element={<Login isSignedIn={handleSignIn} />} />
-        <Route path="/signup" element={<Signup />} />
-        
-        {/* Protected Routes */}
-        {/* <Route element={<PrivateRoute />}> */}
-          <Route path="/dashboard" element={<Dashboard />} />
+      {/* Default Route */}
+      <Route path="/" element={<Dashboard />} />
+      <Route path="*" element={<Dashboard />} />
+      
+      {/* Public Routes */}
+      <Route path="/login" element={<Login isSignedIn={handleSignIn} />} />
+      <Route path="/signup" element={<Signup />} />
+      
+      {/* Protected Routes */}
+      {/* <Route element={<PrivateRoute />}> */}
+        <Route path="/dashboard" element={<Dashboard />} />
 
-          {/* Freelancer routes */}
-          <Route path="/freelancer/home" element={<FreeLancerHome />} />
-          <Route path="/freelancer/profile" element={<FreeLancerProfile />} />
-          <Route path="/freelancer/onboarding/*" element={<Onboarding />} />
+        {/* Freelancer routes */}
+        <Route path="/freelancer/home" element={<FreeLancerHome />} />
+        <Route path="/freelancer/profile" element={<FreeLancerProfile />} />
+        <Route path="/freelancer/onboarding/*" element={<Onboarding />} />
+        {/* <Route path='/freelancer/onboarding/' */}
 
-          {/* Client routes */}
-          <Route path="/client/home" element={<ClientHome />} />
-          <Route path="/client/createjob" element={<Createjob />} />
-          <Route path="/client/postedjob" element={<Postedjob />} />
-          <Route path="/client/viewproposal" element={<ViewProposal />} />
-          <Route path="/client/invite" element={<Invite />} />
-          <Route path="/client/hire" element={<Hire />} />
-          <Route path="/client/worksubmission" element={<WorkSubmission />} />
+        {/* Client routes */}
+        <Route path="/client/home" element={<ClientHome />} />
+        <Route path="/client/createjob" element={<Createjob />} />
+        <Route path="/client/postedjob" element={<Postedjob />} />
+        <Route path="/client/viewproposal" element={<ViewProposal />} />
+        <Route path="/client/invite" element={<Invite />} />
+        <Route path="/client/hire" element={<Hire />} />
+        <Route path="/client/worksubmission" element={<WorkSubmission />} />
 
-
-
-        {/* Default Route */}
-        <Route path="/" element={<Dashboard />} />
-        <Route path="*" element={<Dashboard />} />
     </Routes>
   );
 };
