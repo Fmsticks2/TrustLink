@@ -14,7 +14,10 @@ import Invite from '../components/Client/createjob/Invite.jsx'
 import FreeLancerHome from '../components/Freelancer/FreeLancerHome.jsx';
 import Hire from '../components/Client/createjob/Hire.jsx';
 import WorkSubmission from '../components/Client/createjob/WorkSubmission.jsx';
-
+import Searchjob from '../components/Freelancer/proposal/Searchjob.jsx';
+import Proposal from '../components/Freelancer/proposal/Proposal.jsx';
+import SubmitProposal from '../components/Freelancer/proposal/SubmitProposal.jsx';
+import WithdrawProposal from '../components/Freelancer/proposal/WithdrawProposal.jsx';
 const AppRoutes = () => {
 
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -48,6 +51,14 @@ const AppRoutes = () => {
           <Route path="/freelancer/home" element={<FreeLancerHome />} />
           <Route path="/freelancer/profile" element={<FreeLancerProfile />} />
           <Route path="/freelancer/onboarding/*" element={<Onboarding />} />
+          <Route path="/freelancer/Searchjob/*" element={<Searchjob />} />
+          <Route path="/freelancer/proposal/*" element={<Proposal />} />
+          <Route path="/freelancer/submitproposal/*" element={<SubmitProposal />} />
+          <Route path="/freelancer/WithdrawProposal/*" element={<WithdrawProposal />} />
+
+
+
+
 
           {/* Client routes */}
           <Route path="/client/home" element={<ClientHome />} />

@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+      
+
 const HeroSection = ({ redFlower, heroImg }) => (
   <section className="bg-[#ff4d4af5] text-white py-14 overflow-hidden relative h-[260px]">
     <img src={redFlower} className='absolute top-0 left-0 h-[250px]' alt="" />
@@ -9,7 +12,7 @@ const HeroSection = ({ redFlower, heroImg }) => (
         </div>
         <div className="flex gap-5 z-10">
           <button className="bg-black px-6 py-2 rounded-full text-xs sm:text-sm">Find Talent</button>
-          <button className="bg-transparent border text-white px-6 py-2 rounded-full text-xs sm:text-sm">Find Work</button>
+          <Link to={'/freelancer/searchjob/'} className="bg-transparent border text-white px-6 py-2 rounded-full text-xs sm:text-sm">Find Work</Link>
         </div>          
       </div>
       <div className='flex items-center gap-10 lg:-mt-10 lg:relative absolute top-0 right-0 max-sm:opacity-20'>
