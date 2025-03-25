@@ -1,6 +1,6 @@
 const FeaturesSection = ({ leftFlower, rightFlower, heroImg2 }) => (
   <section className="bg-[#DDE1F3] relative h-fit max-sm:pb-10">
-    <img src={leftFlower} className='absolute top-0 left-0 h-[250px] opacity-60' alt="" />
+    <img src={leftFlower} className='absolute top-0 left-0 h-[250px] lg:opacity-60 opacity-20 max-sm:opacity-10' alt="" />
     <div className='flex sm:flex-row flex-col justify-center gap-10 mt-1 items-center pt-5 z-10'>
       <img src={heroImg2} alt="" />
       <div className='flex flex-col max-sm:flex-wrap max-sm:px-10 sm:w-96 space-y-3'> 
@@ -11,7 +11,7 @@ const FeaturesSection = ({ leftFlower, rightFlower, heroImg2 }) => (
         </div>
       </div>
     </div>
-    <img src={rightFlower} className='absolute bottom-0 sm:top-0 right-0 h-[250px] opacity-60' alt="" />
+    <img src={rightFlower} className='absolute bottom-0 sm:top-0 right-0 h-[250px] lg:opacity-60 opacity-20 max-sm:opacity-20' alt="" />
   </section>
 );
 

@@ -12,7 +12,7 @@ const OpportunitySection = ({ pinkFlowerleft, opportunity, pinkFlowerRight }) =>
           </div>
         </div>
       </div>
-      <img src={pinkFlowerRight} className='absolute bottom-0 right-0 h-[150px]' alt="" />
+      <img src={pinkFlowerRight} className='absolute bottom-0 right-0 h-[150px] ' alt="" />
     </section>
   );
 };

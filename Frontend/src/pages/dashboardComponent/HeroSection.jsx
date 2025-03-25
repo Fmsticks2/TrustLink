@@ -1,6 +1,6 @@
 const HeroSection = ({ redFlower, heroImg }) => (
   <section className="bg-[#ff4d4af5] text-white py-14 overflow-hidden relative h-[260px]">
-    <img src={redFlower} className='absolute top-0 left-0 h-[250px]' alt="" />
+    <img src={redFlower} className='absolute top-0 left-0 h-[250px] max-md:opacity-50 max-sm:opacity-20' alt="" />
     <div className='flex justify-between items-start'>
       <div className='flex flex-col justify-items-start sm:pl-16 xs:pl-12 pl-2 space-y-5'>
         <div className='space-y-5 z-10'>
@@ -12,8 +12,8 @@ const HeroSection = ({ redFlower, heroImg }) => (
           <button className="bg-transparent border text-white px-6 py-2 rounded-full text-xs sm:text-sm">Find Work</button>
         </div>          
       </div>
-      <div className='flex items-center gap-10 lg:-mt-10 lg:relative absolute top-0 right-0 max-sm:opacity-20'>
-        <img src={heroImg} className='opacity-50' alt="" />
+      <div className='flex items-center gap-10 lg:-mt-10 lg:relative absolute top-0 right-0 max-sm:opacity-40'>
+        <img src={heroImg} className='opacity-50 max-md:opacity-10' alt="" />
         <div className='flex flex-col gap-3'>
           <div className='flex items-center gap-3'>
             <span>01</span>

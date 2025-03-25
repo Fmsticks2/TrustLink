@@ -67,19 +67,19 @@ const Navbar = () => {
         >
           <ul className="flex flex-col gap-6 mt-[2em] lg:flex-row lg:gap-8 lg:mt-0">
             <li>
-              <a href="#" className="font-semibold hover:text-gray-300 text-md lg:text-md">
+              <Link to='/freelancer/review_contract' className="font-semibold hover:text-gray-300 text-md lg:text-md">
                 Browse Projects
-              </a>
+              </Link>
             </li>
             <li>
-               <a href="#" className="font-semibold hover:text-gray-300 text-md lg:text-md">
+               <Link to="/freelancer/home" className="font-semibold hover:text-gray-300 text-md lg:text-md">
                 My Jobs
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="font-semibold hover:text-gray-300 text-md lg:text-md">
+              <Link to="/freelancer/milestonetracker" className="font-semibold hover:text-gray-300 text-md lg:text-md">
                 Messages
-              </a>
+              </Link>
             </li>
           </ul>
 
@@ -113,7 +113,8 @@ const Navbar = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to={formType()}
+                      // to={formType()}
+                      to="/freelancer/profile"
                       className={`${
                         active ? 'bg-gray-100' : ''
                       } block px-4 py-3 text-sm text-gray-700`}

@@ -8,7 +8,7 @@ import MembershipCard from './homepage/MembershipCard';
 import ContractsOverview from './homepage/ContractsOverview';
 import BidsOverview from './homepage/BidsOverview';
 import Home from './homepage/Home';
-import BgImg from '../../assets/bgImage.png';
+import FreeLancerImgBg from './FreeLancerImgBg';
 
 
 const FreeLancerHome = () => {
@@ -101,7 +101,7 @@ const FreeLancerHome = () => {
   useEffect(() => {
     if (location.state?.successMessage) {
       if (activeToasts < MAX_TOASTS) {
-        setActiveToasts(prev => prev + 1)
+        setActiveToasts(prev => prev )
         toast.success(location.state.successMessage);
       }
     }
@@ -153,11 +153,8 @@ const FreeLancerHome = () => {
 
   return (
     <div className='bg-gray-100 overflow-hidden'>
-      <div className='relative overflow-hidden'>
-        <div className='bg-[#2942A5] h-[400px]' />
-        <img src={BgImg} className='absolute -top-12 right-0 w-fit' alt="" />
-      </div>
-      <div className="max-w-7xl mx-auto -mt-72 xs:px-4 py-8 relative z-10">
+      <FreeLancerImgBg />
+      <div className="max-w-7xl mx-auto -mt-64 xs:px-4 pb-8 relative z-10">
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="col-span-2 space-y-4">
             <Home />

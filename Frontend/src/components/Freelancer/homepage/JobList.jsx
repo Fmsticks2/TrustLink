@@ -1,10 +1,11 @@
 import { StarIcon } from '@heroicons/react/20/solid';
+import { Link } from 'react-router-dom';
 
 const JobList = ({ jobs, toggleFavorite, filterType }) => {
   return (
     <div className="grid grid-cols-1 gap-4 bg-white shadow-md h-fit">
       {jobs.map((job, index) => (
-        <div key={index} className="p-8 border-b-2">
+        <Link to='/freelancer/jobposting' key={index} className="p-8 border-b-2 cursor-pointer">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-bold">{job.title}</h3>
             {filterType === 'recent' ? ('') 
@@ -37,7 +38,7 @@ const JobList = ({ jobs, toggleFavorite, filterType }) => {
           <a href="#" className="text-blue-500">
             {job.moreLink}
           </a>
-        </div>
+        </Link>
       ))}
     </div>
   );

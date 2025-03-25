@@ -14,6 +14,10 @@ import Invite from '../components/Client/createjob/Invite.jsx'
 import FreeLancerHome from '../components/Freelancer/FreeLancerHome.jsx';
 import Hire from '../components/Client/createjob/Hire.jsx';
 import WorkSubmission from '../components/Client/createjob/WorkSubmission.jsx';
+import ReviewContract from '../components/Freelancer/contractpages/ReviewContract.jsx';
+import JobPosting from '../components/Freelancer/contractpages/JobPosting.jsx';
+import MilestoneTracker from '../components/Freelancer/contractpages/MilestoneTracker.jsx';
+
 
 const AppRoutes = () => {
 
@@ -52,7 +56,10 @@ const AppRoutes = () => {
         <Route path="/freelancer/home" element={<FreeLancerHome />} />
         <Route path="/freelancer/profile" element={<FreeLancerProfile />} />
         <Route path="/freelancer/onboarding/*" element={<Onboarding />} />
-        {/* <Route path='/freelancer/onboarding/' */}
+
+        <Route path="/freelancer/review_contract" element={<ReviewContract />} />
+        <Route path='/freelancer/jobposting' element={<JobPosting />} />
+        <Route path='/freelancer/milestonetracker' element={<MilestoneTracker />} />
 
         {/* Client routes */}
         <Route path="/client/home" element={<ClientHome />} />

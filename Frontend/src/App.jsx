@@ -24,7 +24,7 @@ function App() {
         <Layout>
         <ScrollToTop />
           <Toaster
-            position="top-right"
+            position="top-center"
             reverseOrder={false}
             toastOptions={{
               // Define default options
