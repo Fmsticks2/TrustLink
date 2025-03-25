@@ -82,7 +82,7 @@ return (
             <label className="text-gray-600 text-sm font-semibold">
               Select contract:
             </label>
-            <select className="p-2 rounded bg-gray-100 h-[3em] w-[18em] text-black border border-gray-300">
+            <select className="p-2 rounded bg-gray-100 h-[3em] w-[10em] lg:w-[18em] text-black border border-gray-300">
               <option value="all">All</option>
             </select>
           </div>
