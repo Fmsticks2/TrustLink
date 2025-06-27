@@ -9,118 +9,46 @@ import ContractsOverview from './homepage/ContractsOverview';
 import BidsOverview from './homepage/BidsOverview';
 import Home from './homepage/Home';
 import FreeLancerImgBg from './FreeLancerImgBg';
-
+import JobsData from '../../data/JobData';
 
 const FreeLancerHome = () => {
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('bestMatch');
-  const [jobs, setJobs] = useState([
-    {
-      title: "Content Writer - Tech & Marketing",
-      type: "Project-based",
-      level: "Junior/Mid",
-      budget: "$1,500",
-      posted: "2 days ago",
-      description: "We are seeking a creative content writer to produce high-quality blog posts, articles, and social media content for our tech company.",
-      paymentType: "Fixed Rate",
-      rating: "4.6",
-      reviews: "32 Reviews",
-      location: "Remote",
-      favorite: false,
-    },
-    {
-      title: "UI/UX Design for E-commerce App",
-      type: "Fixed-price",
-      level: "Intermediate",
-      budget: "$3,000",
-      posted: "6 hours ago",
-      description: "We are looking for a talented UI/UX designer to create a modern and user-friendly interface for our e-commerce platform. Experience with Figma and user research is a plus.",
-      paymentType: "Fixed Rate",
-      rating: "4.8",
-      reviews: "25 Reviews",
-      location: "Remote",
-      favorite: false,
-    },
-    {
-      title: "React Frontend Development",
-      type: "Hourly",
-      level: "Senior",
-      budget: "$50/hr",
-      posted: "1 day ago",
-      description: "We need a skilled React developer to join our team and work on a challenging project. Experience with Redux, GraphQL, and testing frameworks is a must.",
-      paymentType: "Hourly Rate",
-      rating: "4.2",
-      reviews: "18 Reviews",
-      location: "New York, USA",
-      favorite: false,
-    },
-    {
-      title: "Digital Marketing Specialist",
-      type: "Project-based",
-      level: "Intermediate",
-      budget: "$2,500",
-      posted: "1 week ago",
-      description: "We need a skilled digital marketer to manage our social media campaigns, SEO, and paid advertising efforts.",
-      paymentType: "Fixed Rate",
-      rating: "4.7",
-      reviews: "28 Reviews",
-      location: "Remote",
-      favorite: false,
-    },
-    {
-      title: "Mobile App Developer (iOS & Android)",
-      type: "Hourly",
-      level: "Senior",
-      budget: "$60/hr",
-      posted: "3 days ago",
-      description: "Join our team to develop and maintain high-performance mobile applications for both iOS and Android platforms using native languages.",
-      paymentType: "Hourly Rate",
-      rating: "4.9",
-      reviews: "45 Reviews",
-      location: "London, UK",
-      favorite: false,
-    },
-    {
-      title: "Data Analyst - Business Intelligence",
-      type: "Hourly",
-      level: "Senior",
-      budget: "$70/hr",
-      posted: "1 week ago",
-      description: "We are looking for a data analyst with strong analytical and problem-solving skills to analyze large datasets and provide actionable insights.",
-      paymentType: "Hourly Rate",
-      rating: "4.4",
-      reviews: "21 Reviews",
-      location: "San Francisco, USA",
-      favorite: false,
-    }  
-  ]);
+  const [jobs, setJobs] = useState([]); 
   const MAX_TOASTS = 1;
-  const [activeToasts, setActiveToasts] = useState(0)
+  const [activeToasts, setActiveToasts] = useState(0);
+
+  useEffect(() => {
+    setJobs(JobsData()); 
+  }, []);
 
   useEffect(() => {
     if (location.state?.successMessage) {
       if (activeToasts < MAX_TOASTS) {
-        setActiveToasts(prev => prev )
+        setActiveToasts(prev => prev + 1);
         toast.success(location.state.successMessage);
       }
     }
   }, [location.state, activeToasts]);
 
-  const filteredJobs = jobs.filter(job => 
-    job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    job.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    job.level.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    job.budget.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    job.posted.toLowerCase().includes(searchTerm.toLowerCase()) ||    
-    job.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    job.paymentType.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    job.rating.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    job.reviews.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    job.location.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredJobs = jobs.filter(job => {
+    if (!searchTerm) return true;
+    
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      job.title.toLowerCase().includes(searchLower) ||
+      job.description.toLowerCase().includes(searchLower) ||
+      job.location.toLowerCase().includes(searchLower) ||
+      (Array.isArray(job.skills) && job.skills.some(skill => 
+        skill.toLowerCase().includes(searchLower)
+      ))
+    );
+  });
 
   const parsePostedDate = (posted) => {
+    const time = posted || '0 days ago'; // Handle undefined posting
+    const [amount, unit] = time.split(' ');
     const timeMap = {
       'hour': 1,
       'day': 24,
@@ -128,26 +56,35 @@ const FreeLancerHome = () => {
       'month': 24 * 30,
       'year': 24 * 365
     };
-
-    const [amount, unit] = posted.split(' ');
-    const hours = parseInt(amount) * timeMap[unit.replace(/s$/, '')];
+    const hours = parseInt(amount) * (timeMap[unit.replace(/s$/, '')] || 24);
     return new Date(Date.now() - hours * 60 * 60 * 1000);
   };
 
-  const toggleFavorite = (index) => {
-    const updatedJobs = [...jobs];
-    updatedJobs[index].favorite = !updatedJobs[index].favorite;
-    setJobs(updatedJobs);
+  const toggleFavorite = (jobId) => {
+    setJobs(prevJobs => 
+      prevJobs.map(job => 
+        job.id === jobId ? { ...job, favorite: !job.favorite } : job
+      )
+    );
+  };
+
+  const onSkillClick = (skill) => {
+    setSearchTerm(skill);
   };
 
   const sortedJobs = () => {
+    let result = [...filteredJobs];
     switch (filterType) {
       case 'recent':
-        return filteredJobs.sort((a, b) => parsePostedDate(b.posted) - parsePostedDate(a.posted));
+        return result.sort((a, b) => {
+          const dateA = parsePostedDate(a.posted);
+          const dateB = parsePostedDate(b.posted);
+          return dateB - dateA;
+        });
       case 'saved':
-        return filteredJobs.filter(job => job.favorite);
+        return result.filter(job => job.favorite);
       default:
-        return filteredJobs;
+        return result;
     }
   };
 
@@ -184,7 +121,12 @@ const FreeLancerHome = () => {
                 </div>
               </div>
 
-              <JobList jobs={sortedJobs()} toggleFavorite={toggleFavorite} filterType={filterType} />
+              <JobList 
+                jobs={sortedJobs()} 
+                toggleFavorite={toggleFavorite} 
+                filterType={filterType} 
+                onSkillClick={onSkillClick} 
+              />
             </div>
           </div>
           <div className="h-fit grid grid-cols-1 lg:col-span-1 col-span-2 items-start justify-between gap-5">

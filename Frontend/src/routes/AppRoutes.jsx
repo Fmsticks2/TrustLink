@@ -18,6 +18,11 @@ import Searchjob from '../components/Freelancer/proposal/Searchjob.jsx';
 import Proposal from '../components/Freelancer/proposal/Proposal.jsx';
 import SubmitProposal from '../components/Freelancer/proposal/SubmitProposal.jsx';
 import WithdrawProposal from '../components/Freelancer/proposal/WithdrawProposal.jsx';
+import MilestoneTracker from '../components/Freelancer/contractpages/MilestoneTracker.jsx';
+import ReviewContract from '../components/Freelancer/contractPages/ReviewContract';
+import JobPosting from '../components/Freelancer/contractpages/JobPosting.jsx'
+
+
 const AppRoutes = () => {
 
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -59,6 +64,10 @@ const AppRoutes = () => {
           <Route path="/freelancer/proposal/*" element={<Proposal />} />
           <Route path="/freelancer/submitproposal/*" element={<SubmitProposal />} />
           <Route path="/freelancer/WithdrawProposal/*" element={<WithdrawProposal />} />
+          <Route path='/freelancer/milestonetracker' element={<MilestoneTracker />} />
+          <Route path='/freelancer/review_contract' element={<ReviewContract />} />
+          <Route path='/freelancer/jobposting' element={<JobPosting />} />
+          
 
 
 

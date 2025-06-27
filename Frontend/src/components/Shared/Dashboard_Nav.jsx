@@ -19,7 +19,7 @@ const Dashboard_Nav = () => {
           <div className="hidden xl:flex items-center space-x-6">
             <a href="#" className="text-gray-700 hover:text-red-500 transition-colors">Find Talent</a>
             <a href="#" className="text-gray-700 hover:text-red-500 transition-colors">Find Work</a>
-            <a href="#" className="text-gray-700 hover:text-red-500 transition-colors">Why UpTechHunt</a>
+            <a href="#" className="text-gray-700 hover:text-red-500 transition-colors">Why TrustLink</a>
 
             {/* Search Bar */}
             <div className="relative">

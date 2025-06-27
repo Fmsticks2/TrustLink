@@ -30,7 +30,7 @@ function SubmitProposal() {
     );
 
     setTimeout(() => {
-      navigate("/freelancer/WithdrawProposal/");
+      navigate("/freelancer/jobposting/");
     }, 3000);
   };
 

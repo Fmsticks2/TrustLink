@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom'
 
 const ReviewContract = () => {
   // Placeholder data - replace with your actual data
@@ -17,9 +17,12 @@ const ReviewContract = () => {
       <div className="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto">
         {/* Header */}
         <div className="flex items-center mb-4">
-          <button className="text-gray-600 hover:text-gray-800">
-            &lt; Back
-          </button>
+          <Link to='/freelancer/milestonetracker'>
+            <button className="text-gray-600 hover:text-gray-800">
+              &lt; Back
+            </button>          
+          </Link>
+
           <h2 className="text-xl font-semibold ml-4">Review contract</h2>
         </div>
 

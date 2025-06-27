@@ -3,6 +3,7 @@ import FreeLancerImgBg from '../FreeLancerImgBg';
 import { ImClock, ImCoinDollar, ImFacebook, ImImage, ImLocation } from 'react-icons/im';
 import { CalendarDateRangeIcon, EnvelopeIcon, GifIcon, MicrophoneIcon, PhoneIcon, SparklesIcon, StarIcon, UserIcon } from '@heroicons/react/20/solid';
 import { CgMoveRight, CgPentagonRight } from 'react-icons/cg';
+import { Link } from 'react-router-dom';
 
 
 const JobPosting = () => {
@@ -53,7 +54,7 @@ const JobPosting = () => {
   return (
     <div className="bg-gray-100 overflow-hidden">
       <FreeLancerImgBg />
-      <div className='max-w-full mx-auto -mt-48 xs:px-4 pb-32 relative z-10'>
+      <div className='max-w-full mx-auto -mt-52 xs:px-4 pb-32 relative z-10'>
         <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6">
           {/* Left Column - Job Details */}
           <div className="p-6 lg:col-span-9 md:col-span-8 overflow-hidden grid grid-cols-1">
@@ -95,12 +96,17 @@ const JobPosting = () => {
 
             {/* Actions */}
             <div className="flex max-xs:flex-col gap-5 mb-6 max-md:text-sm">
-              <button className="bg-[#FF4C4A] text-white rounded-full font-semibold py-2 md:px-10 px-5">
-                Change terms
-              </button>
-              <button className="bg-white text-black rounded-full font-semibold py-2 md:px-10 px-5 border border-gray-500">
+              <Link to={'/freelancer/submitproposal/'} >
+                <button className="bg-[#FF4C4A] text-white rounded-full font-semibold py-2 md:px-10 px-5">
+                  Change terms
+                </button>
+              </Link>
+              <Link to={"/freelancer/milestonetracker"}>
+                <button className="bg-white text-black rounded-full font-semibold py-2 md:px-10 px-5 border border-gray-500">
                 Withdraw proposal
               </button>
+              </Link>
+
             </div>
 
             <div className='border border-gray-200 w-[500rem] h-0 my-5' />

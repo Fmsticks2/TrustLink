@@ -1,44 +1,57 @@
 import { StarIcon } from '@heroicons/react/20/solid';
+import { FaDollarSign, FaLanguage } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const JobList = ({ jobs, toggleFavorite, filterType }) => {
+const JobList = ({ jobs, toggleFavorite = () => {}, filterType, onSkillClick = () => {} }) => {
   return (
     <div className="grid grid-cols-1 gap-4 bg-white shadow-md h-fit">
-      {jobs.map((job, index) => (
-        <Link to='/freelancer/jobposting' key={index} className="p-8 border-b-2 cursor-pointer">
+      {jobs.map((job) => (
+        <div key={job.id} className="p-8 border-b-2">
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-bold">{job.title}</h3>
-            {filterType === 'recent' ? ('') 
-            : (<StarIcon
-                onClick={() => toggleFavorite(index)}
+            <Link to='/freelancer/proposal/' className='cursor-pointer'>
+              <h3 className="text-lg font-bold">{job.title}</h3>
+            </Link>
+            {filterType !== 'search' && (
+              <StarIcon
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleFavorite(job.id);
+                }}
                 className={`h-6 w-6 cursor-pointer ${job.favorite ? 'text-[#FF4C4A]' : 'text-gray-300'}`}
-              />)
-            }
+              />
+            )}
           </div>
-          <div className="text-sm text-gray-500">
-            {job.type} - {job.level} - Est. Budget: {job.budget} - Posted {job.posted}
-          </div>
-          <p className="mt-2">{job.description}</p>
-          <div className="flex flex-wrap items-center mt-2">
-            <span className="font-semibold">{job.paymentType}</span>
-            <div className="flex items-center ml-2">
-              <span className='flex'>
-                <StarIcon className={`h-3 ${job.rating >= 1 ? 'text-[#FF4C4A]' : 'text-gray-300'}`} />
-                <StarIcon className={`h-3 ${job.rating >= 2 ? 'text-[#FF4C4A]' : 'text-gray-300'}`} />
-                <StarIcon className={`h-3 ${job.rating >= 3 ? 'text-[#FF4C4A]' : 'text-gray-300'}`} />
-                <StarIcon className={`h-3 ${job.rating >= 4 ? 'text-[#FF4C4A]' : 'text-gray-300'}`} />
-                <StarIcon className={`h-3 ${job.rating >= 5 ? 'text-[#FF4C4A]' : 'text-gray-300'}`} />
-              </span> 
-              <span className="ml-1">({job.reviews})</span>
+          <Link to='/freelancer/proposal/' className='cursor-pointer'>
+            <div className="text-sm text-gray-500">
+              {job.type} - {job.level} - Est. Budget: {job.budget} - Posted {job.posted || 'Recently'}
             </div>
-            <div className="flex items-center ml-2">
-              <span>{job.location}</span>
+            <p className="mt-2">{job.description}</p>
+            <div className="flex flex-wrap items-center mt-2">
+              <span className="flex items-center">
+                <FaDollarSign className='text-[#FF4C4A]' /> 
+                {job.paymentType}
+              </span>
+              <div className="flex items-center ml-2">
+                <span>{job.location}</span>
+              </div>
+              <div className="flex items-center ml-2">
+                <FaLanguage className="text-blue-500 mr-1" />
+                <span>{job.languages ? job.languages.join(", ") : "English"}</span>
+              </div>
+              <p className="text-sm text-gray-700 mt-2 w-full">
+                Skills: {Array.isArray(job.skills) ? job.skills.map(skill => (
+                  <span
+                    key={skill}
+                    onClick={() => onSkillClick(skill)}
+                    className="text-blue-500 cursor-pointer hover:underline mr-2"
+                  >
+                    {skill}
+                  </span>
+                )) : "N/A"}
+              </p>
             </div>
-          </div>
-          <a href="#" className="text-blue-500">
-            {job.moreLink}
-          </a>
-        </Link>
+          </Link>
+        </div>
       ))}
     </div>
   );
