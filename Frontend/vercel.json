@@ -1,8 +1,21 @@
 {
-  "rewrites":[
+  "rewrites": [
     {
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "env": {
+    "VITE_API_URL": "@vite_api_url",
+    "VITE_CITREA_RPC_URL": "@vite_citrea_rpc_url",
+    "VITE_CITREA_CHAIN_ID": "@vite_citrea_chain_id",
+    "VITE_TRUSTLINK_CONTRACT_ADDRESS": "@vite_trustlink_contract_address",
+    "VITE_WALLET_CONNECT_PROJECT_ID": "@vite_wallet_connect_project_id"
+  },
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "github": {
+    "silent": true
+  }
 }

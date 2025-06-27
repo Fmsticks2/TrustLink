@@ -24,21 +24,24 @@ TrustLink/
 ## Technology Stack
 
 ### Frontend
-- React.js
+- React.js with Vite
 - Wagmi (Ethereum interactions)
 - TailwindCSS (Styling)
-- Vite (Build tool)
+- React Context (State management)
+- Ethers.js (Blockchain integration)
 
 ### Backend
 - Node.js
 - Express.js
 - MongoDB
 - JWT Authentication
+- AWS S3 (File storage)
 
 ### Blockchain
 - Solidity
 - Citrea zkEVM
 - OpenZeppelin Contracts
+- Hardhat (Development environment)
 
 ## Getting Started
 
@@ -46,6 +49,7 @@ TrustLink/
 - Node.js (v16 or higher)
 - MongoDB
 - Citrea zkEVM Wallet
+- Git
 
 ### Installation
 
@@ -59,26 +63,22 @@ cd trustlink
 ```bash
 cd Frontend
 npm install
+cp .env.example .env  # Configure environment variables
 ```
 
 3. Install Backend dependencies:
 ```bash
 cd ../Backend
 npm install
+cp .env.example .env  # Configure environment variables
 ```
 
-4. Set up environment variables:
-```bash
-cp Backend/.env.example Backend/.env
-# Edit .env with your configuration
-```
-
-5. Deploy smart contracts:
+4. Install and compile smart contracts:
 ```bash
 cd ../Blockchain
 npm install
+cp .env.example .env  # Configure environment variables
 npx hardhat compile
-npx hardhat deploy --network citrea
 ```
 
 ### Running the Application
@@ -92,41 +92,61 @@ npm run dev
 2. Start the frontend application:
 ```bash
 cd Frontend
-npm start
+npm run dev
 ```
 
-## Smart Contract Architecture
+3. Run blockchain tests:
+```bash
+cd Blockchain
+npx hardhat test
+```
 
-The TrustLink smart contract system consists of the following components:
+## Testing
 
-- **TrustLink.sol**: Main contract handling jobs, proposals, and payments
-- **User Profiles**: On-chain verification and reputation system
-- **Escrow System**: Secure payment handling with milestone support
+### Frontend Tests
+```bash
+cd Frontend
+npm test
+```
 
-## API Documentation
+### Backend Tests
+```bash
+cd Backend
+npm test
+```
 
-API documentation is available at `/api-docs` when running the backend server.
+### Smart Contract Tests
+```bash
+cd Blockchain
+npx hardhat test
+```
+
+## Deployment
+
+For detailed deployment instructions, please refer to [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## Security
+## Security Best Practices
 
-- All smart contracts are thoroughly tested and audited
-- Backend implements rate limiting and security best practices
-- Frontend uses secure wallet connections and data handling
+- Never commit sensitive information or private keys
+- Use environment variables for all secrets
+- Regularly update dependencies
+- Follow security best practices for Web3 development
+- Implement proper input validation
+- Use secure authentication methods
+- Regular security audits
+
+## Support
+
+For support, please open an issue in the GitHub repository.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-Your Name - [@yourusername](https://twitter.com/yourusername)
-
-Project Link: [https://github.com/yourusername/trustlink](https://github.com/yourusername/trustlink)
