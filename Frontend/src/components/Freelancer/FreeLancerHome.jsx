@@ -7,30 +7,34 @@ import ProfileSummary from './homepage/ProfileSummary';
 import MembershipCard from './homepage/MembershipCard';
 import ContractsOverview from './homepage/ContractsOverview';
 import BidsOverview from './homepage/BidsOverview';
-import Home from './homepage/Home';
-import FreeLancerImgBg from './FreeLancerImgBg';
-import JobsData from '../../data/JobData';
+import { getJobs } from '../../services/api';
 
 const FreeLancerHome = () => {
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('bestMatch');
-  const [jobs, setJobs] = useState([]); 
-  const MAX_TOASTS = 1;
-  const [activeToasts, setActiveToasts] = useState(0);
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setJobs(JobsData()); 
-  }, []);
-
-  useEffect(() => {
-    if (location.state?.successMessage) {
-      if (activeToasts < MAX_TOASTS) {
-        setActiveToasts(prev => prev + 1);
-        toast.success(location.state.successMessage);
+    const fetchJobs = async () => {
+      try {
+        const jobsData = await getJobs();
+        setJobs(jobsData);
+        if (location.state?.successMessage) {
+          toast.success(location.state.successMessage);
+        }
+      } catch (err) {
+        setError(err.message || 'Failed to fetch jobs');
+        toast.error(err.message || 'Failed to fetch jobs');
+      } finally {
+        setLoading(false);
       }
-    }
-  }, [location.state, activeToasts]);
+    };
+
+    fetchJobs();
+  }, [location.state]);
 
   const filteredJobs = jobs.filter(job => {
     if (!searchTerm) return true;
@@ -39,25 +43,15 @@ const FreeLancerHome = () => {
     return (
       job.title.toLowerCase().includes(searchLower) ||
       job.description.toLowerCase().includes(searchLower) ||
-      job.location.toLowerCase().includes(searchLower) ||
-      (Array.isArray(job.skills) && job.skills.some(skill => 
+      (job.category && job.category.toLowerCase().includes(searchLower)) ||
+      (Array.isArray(job.requiredSkills) && job.requiredSkills.some(skill => 
         skill.toLowerCase().includes(searchLower)
       ))
     );
   });
 
-  const parsePostedDate = (posted) => {
-    const time = posted || '0 days ago'; // Handle undefined posting
-    const [amount, unit] = time.split(' ');
-    const timeMap = {
-      'hour': 1,
-      'day': 24,
-      'week': 24 * 7,
-      'month': 24 * 30,
-      'year': 24 * 365
-    };
-    const hours = parseInt(amount) * (timeMap[unit.replace(/s$/, '')] || 24);
-    return new Date(Date.now() - hours * 60 * 60 * 1000);
+  const parsePostedDate = (dateString) => {
+    return new Date(dateString);
   };
 
   const toggleFavorite = (jobId) => {
@@ -71,6 +65,9 @@ const FreeLancerHome = () => {
   const onSkillClick = (skill) => {
     setSearchTerm(skill);
   };
+
+  if (loading) return <div className="flex justify-center items-center h-screen">Loading...</div>;
+  if (error) return <div className="flex justify-center items-center h-screen text-red-500">Error: {error}</div>;
 
   const sortedJobs = () => {
     let result = [...filteredJobs];

@@ -1,145 +1,263 @@
-import { CheckIcon } from '@heroicons/react/20/solid';
-import BgImg from '../../../assets/bgImage.png';
-import { ArrowLeftIcon,CheckCircleIcon } from "@heroicons/react/24/outline";
-import { Link, useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from "react-toastify";
-import { CheckmarkIcon } from 'react-hot-toast';
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { toast } from "react-hot-toast";
+import { useState, useEffect } from 'react';
+import { submitProposal, getJobById } from '../../../services/api';
 
 function SubmitProposal() {
-
   const navigate = useNavigate();
+  const { jobId } = useParams();
+  const [loading, setLoading] = useState(false);
+  const [job, setJob] = useState(null);
+  const [proposalData, setProposalData] = useState({
+    coverLetter: '',
+    bidAmount: '',
+    deliveryTime: '',
+    milestones: []
+  });
 
-  const handleSubmit = (e) => {
-
-    e.preventDefault();
-
-    toast.success(
-      <div className="flex w-[70%] items-center">
-       <p><span className=" text-red-500 font-bold"> 🎉 Congratulations,</span>You have accepted a proposal.</p> 
-      
-      </div>,
-      {
-        position: "top-center",
-        autoClose: 4000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        theme: "light",
+  useEffect(() => {
+    const fetchJob = async () => {
+      try {
+        const jobData = await getJobById(jobId);
+        setJob(jobData);
+      } catch (error) {
+        console.error('Error fetching job:', error);
+        toast.error('Failed to load job details');
+        navigate('/freelancer/searchjob');
       }
-    );
+    };
+    fetchJob();
+  }, [jobId, navigate]);
 
-    setTimeout(() => {
-      navigate("/freelancer/jobposting/");
-    }, 3000);
+  const validateProposal = () => {
+    if (!proposalData.coverLetter.trim()) {
+      toast.error('Please write a cover letter');
+      return false;
+    }
+    if (!proposalData.bidAmount || proposalData.bidAmount <= 0) {
+      toast.error('Please enter a valid bid amount');
+      return false;
+    }
+    if (!proposalData.deliveryTime || proposalData.deliveryTime <= 0) {
+      toast.error('Please enter a valid delivery time');
+      return false;
+    }
+    if (proposalData.milestones.length > 0) {
+      const totalMilestoneAmount = proposalData.milestones.reduce(
+        (sum, milestone) => sum + Number(milestone.amount), 0
+      );
+      if (totalMilestoneAmount !== Number(proposalData.bidAmount)) {
+        toast.error('Total milestone amounts must equal the bid amount');
+        return false;
+      }
+      const invalidMilestone = proposalData.milestones.find(
+        milestone => !milestone.description.trim() || !milestone.amount || milestone.amount <= 0
+      );
+      if (invalidMilestone) {
+        toast.error('Please fill in all milestone details correctly');
+        return false;
+      }
+    }
+    return true;
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateProposal()) return;
 
+    setLoading(true);
+    try {
+      await submitProposal({
+        jobId,
+        ...proposalData
+      });
+      toast.success('Proposal submitted successfully!');
+      navigate('/freelancer/searchjob');
+    } catch (error) {
+      console.error('Proposal submission error:', error);
+      toast.error(error.message || 'Failed to submit proposal');
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProposalData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleMilestoneAdd = () => {
+    if (proposalData.milestones.length >= 5) {
+      toast.error('Maximum 5 milestones allowed');
+      return;
+    }
+    setProposalData(prev => ({
+      ...prev,
+      milestones: [...prev.milestones, { description: '', amount: '' }]
+    }));
+  };
+
+  const handleMilestoneChange = (index, field, value) => {
+    setProposalData(prev => ({
+      ...prev,
+      milestones: prev.milestones.map((milestone, i) => 
+        i === index ? { ...milestone, [field]: value } : milestone
+      )
+    }));
+  };
+
+  const handleMilestoneRemove = (index) => {
+    setProposalData(prev => ({
+      ...prev,
+      milestones: prev.milestones.filter((_, i) => i !== index)
+    }));
+  };
+
+  if (!job) {
+    return (
+      <div className="container mx-auto px-4 py-8 text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto"></div>
+        <p className="mt-4 text-gray-600">Loading job details...</p>
+      </div>
+    );
+  }
 
   return (
-    <div>
-       <ToastContainer/>
-    <div className='relative overflow-hidden'>
-                   <div className='bg-[#2942A5] h-[400px]' />
-                   <img src={BgImg} className='absolute top-0 right-0 w-fit' alt="" />
-                 </div>
- 
- <div className="p-6 w-[90%] mx-auto mb-[5em] bg-white shadow-lg rounded-lg lg:-mt-[20%] z-10 relative">
- <button className=" text-blue-500 mb-4">
-  <Link to={'/freelancer/proposal/'} className='flex items-center' >   <ArrowLeftIcon className="w-5 h-5 mr-1" /> Back </Link>
- </button>
- <div className="flex flex-col gap-6">
- <div className=" border-b p-[3em] border-rounded-lg">
- 
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <div className="p-6">
+          <Link to="/freelancer/searchjob" className="flex items-center text-gray-600 mb-6">
+            <ArrowLeftIcon className="w-5 h-5 mr-2" />
+            Back to Jobs
+          </Link>
 
- <div>
- <h1 className="text-xl font-semibold">Looking for a UX Web Designer/Russian Speakers only</h1>
- <p className="text-gray-600 text-sm mt-2">Posted 3 hours ago</p>
- </div>
+          <div className="mb-6">
+            <h1 className="text-2xl font-bold mb-2">{job.title}</h1>
+            <p className="text-gray-600">{job.description}</p>
+            <div className="mt-2">
+              <span className="font-semibold">Budget:</span> ${job.budget}
+            </div>
+          </div>
 
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Cover Letter
+              </label>
+              <textarea
+                name="coverLetter"
+                value={proposalData.coverLetter}
+                onChange={handleChange}
+                rows="6"
+                className="w-full border rounded-lg p-3"
+                placeholder="Introduce yourself and explain why you're the best fit for this job..."
+                required
+              />
+            </div>
 
- 
- 
- 
- <p className="mt-4 w-[50%]">
- I need a website for a software development and services company.
- The company is a new startup, so the focus is on what we offer to provide,
-  than what we did in the past.
- </p>
- 
- <h3 className="text-lg font-semibold mt-4">The key areas are:</h3>
- <ul className="list-disc list-inside text-gray-700">
-   <li>Digital transformation work</li>
-   <li>Platform modernization</li>
-   <li>Automation and support</li>
-   <li>Security Risk mitigation</li>
-   <li>Cloud Dev migration</li>
-   <li>Software development</li>
- </ul>
- <p className='my-4'>Contents development is included in job which should be finalized after review with me.</p>
- <hr/>
- <h3 className="text-lg font-semibold mt-4">Skills and Expertise</h3>
- <div className="flex flex-wrap gap-2 my-4">
-   <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Web Design</span>
-   <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Mockup</span>
-   <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Web Design</span>
-   <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">Mockup</span>
- </div>
- <hr/>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Bid Amount (USD)
+                </label>
+                <input
+                  type="number"
+                  name="bidAmount"
+                  value={proposalData.bidAmount}
+                  onChange={handleChange}
+                  className="w-full border rounded-lg p-3"
+                  placeholder="Enter your bid amount"
+                  required
+                  min="1"
+                />
+              </div>
 
- <div className="my-4 flex items-center justify-between">
-  <h4 className="font-semibold ">
-    Terms
-  </h4>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Delivery Time (Days)
+                </label>
+                <input
+                  type="number"
+                  name="deliveryTime"
+                  value={proposalData.deliveryTime}
+                  onChange={handleChange}
+                  className="w-full border rounded-lg p-3"
+                  placeholder="Enter delivery time in days"
+                  required
+                  min="1"
+                />
+              </div>
+            </div>
 
-  <p>Client budget:$10:00 USD</p>
- </div>
- <hr />
+            <div>
+              <div className="flex justify-between items-center mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Milestones (Optional)
+                </label>
+                <button
+                  type="button"
+                  onClick={handleMilestoneAdd}
+                  className="text-blue-600 hover:text-blue-800"
+                >
+                  + Add Milestone
+                </button>
+              </div>
 
- <div>
-    <h4 className="font-medium mt-[14em] mb-4 text-[#2942A5] cursor-pointer ">+Add milestone</h4>
- </div>
- <hr />
+              {proposalData.milestones.map((milestone, index) => (
+                <div key={index} className="flex gap-4 mb-4">
+                  <input
+                    type="text"
+                    value={milestone.description}
+                    onChange={(e) => handleMilestoneChange(index, 'description', e.target.value)}
+                    className="flex-grow border rounded-lg p-3"
+                    placeholder="Milestone description"
+                    required
+                  />
+                  <input
+                    type="number"
+                    value={milestone.amount}
+                    onChange={(e) => handleMilestoneChange(index, 'amount', e.target.value)}
+                    className="w-32 border rounded-lg p-3"
+                    placeholder="Amount"
+                    required
+                    min="1"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => handleMilestoneRemove(index)}
+                    className="text-red-600 hover:text-red-800 px-2"
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
 
- <div className=" my-[3em] ">
-  <h3 className="font-semibold ">How long will it take?</h3>
+              {proposalData.milestones.length > 0 && (
+                <p className="text-sm text-gray-500 mt-2">
+                  Total milestone amount: ${proposalData.milestones.reduce((sum, m) => sum + Number(m.amount || 0), 0)}
+                </p>
+              )}
+            </div>
 
-  <input type="text" placeholder="eg- 6months" className="border mt-2 border-black rounded-md p-2 "   />
- </div>
-
- <hr />
-
-
-<div className="flex flex-col gap-4 my-5 text-black">
-  <h3 className="font-bold">Additional Details</h3>
-  <hr />
-  <label>
-Write cover letter
-  </label>
-  <textarea  className="h-[20em] border p-5" placeholder="Write here" name="" id=""></textarea>
-</div>
-
- <div className="mb-4">
-        <label className="block font-semibold mb-2">Attachments</label>
-          <input
-          type="file"
-          className="w-full border border-[#FF4C4A] p-2 rounded"
-          multiple
-        />
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full py-3 rounded-lg transition-colors ${
+                loading 
+                  ? 'bg-gray-400 cursor-not-allowed' 
+                  : 'bg-blue-600 hover:bg-blue-700 text-white'
+              }`}
+            >
+              {loading ? 'Submitting...' : 'Submit Proposal'}
+            </button>
+          </form>
+        </div>
       </div>
- 
- 
- 
- 
- </div>
- 
- <div className='flex my-[4em] justify-start items-center gap-4 px-[3em]  '>
- <button className="text-white text-lg border  bg-[#FF4C4A] rounded-full w-[190px] h-[39px]" onClick={handleSubmit}> Submit a proposal</button>
- <h4 className='font-semibold'>Cancel</h4>
- </div >
-
-  </div> </div> </div>
+    </div>
   );
 }
 

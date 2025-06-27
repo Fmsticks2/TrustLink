@@ -1,0 +1,7 @@
+{
+  "network": "citrea",
+  "trustLinkAddress": "0x72CA2541A705468368F9474fB419Defd002EC8af",
+  "paymentTokenAddress": "0x5CbD1ABe5029c5c717038f86C31B706f027640AB",
+  "platformFee": 250,
+  "deploymentTime": "2025-06-27T22:27:38.556Z"
+}

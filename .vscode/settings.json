@@ -1,3 +1,4 @@
 {
-  "dependi.npm.lockFileEnabled": true
+  "dependi.npm.lockFileEnabled": true,
+  "git.ignoreLimitWarning": true
 }

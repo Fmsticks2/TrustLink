@@ -1,83 +1,141 @@
-import BgImg from '../../../assets/bgImage.png';
-import profile from '../../../assets/profile.svg'; 
-import mariya from '../../../assets/mariya.svg';
-import star from '../../../assets/star.svg';
-import dullstar from '../../../assets/dullstar.svg'; 
-import flag from '../../../assets/flag.svg';
-import { Link } from 'react-router-dom';
+import { ArrowLeftIcon, StarIcon } from '@heroicons/react/24/outline';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { getProposalsByJob, acceptProposal } from '../../../services/api';
+import { toast } from 'react-hot-toast';
 
+function ViewProposal() {
+  const { jobId } = useParams();
+  const navigate = useNavigate();
+  const [proposals, setProposals] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-function ViewProposal () {
-    const proposals = [
-        {
-          id: 1,
-          name: "Bhuvesh Singh",
-          description: "UX designer, Gharphic designer",
-          image: profile,
-          package: "$60.00/hr",
-          total: "Total earnings $76k on web and mobile design",
-          skills: ["UI/UX", "Web Design", "Mobile Design"],
-          stars: star,
-          dullstar: dullstar,
-          reviews: "12 Reviews",
-          location: "Manhattan, USA",
-          locationFlag: flag,
-          invite: "Invite",
-        },
-    
-        {
-          id: 2,
-          name: "Mariya sarapova",
-          description: "UX designer, Gharphic designer",
-          image: mariya,
-          package: "$60.00/hr",
-          total: "Total earnings $76k on web and mobile design",
-          skills: ["UI/UX", "Web Design", "Mobile Design"],
-          stars: star,
-          dullstar: dullstar,
-          reviews: "12 Reviews",
-          location: "Manhattan, USA",
-          locationFlag: flag,
-          invite: "Invite",
-        },
-    
-        {
-          id: 3,
-          name: "Bhuvesh Singh",
-          description: "UX designer, Gharphic designer",
-          image: profile,
-          package: "$60.00/hr",
-          total: "Total earnings $76k on web and mobile design",
-          skills: ["UI/UX", "Web Design", "Mobile Design"],
-          stars: star,
-          dullstar: dullstar,
-          reviews: "12 Reviews",
-          location: "Manhattan, USA",
-          locationFlag: flag,
-          invite: "Invite",
-        },
-    
-        {
-          id: 4,
-          name: "Bhuvesh Singh",
-          description: "UX designer, Gharphic designer",
-          image: profile,
-          package: "$60.00/hr",
-          total: "Total earnings $76k on web and mobile design",
-          skills: ["UI/UX", "Web Design", "Mobile Design"],
-          stars: star,
-          dullstar: dullstar,
-          reviews: "12 Reviews",
-          location: "Manhattan, USA",
-          locationFlag: flag,
-          invite: "Invite",
-        },
-     
-      ];    
+  const handleHire = async (proposalId) => {
+    try {
+      await acceptProposal(proposalId);
+      toast.success('Proposal accepted successfully!');
+      navigate('/client/contracts');
+    } catch (error) {
+      console.error('Error accepting proposal:', error);
+      toast.error(error.message || 'Failed to accept proposal');
+    }
+  };
 
+  useEffect(() => {
+    const fetchProposals = async () => {
+      try {
+        const data = await getProposalsByJob(jobId);
+        setProposals(data);
+      } catch (error) {
+        console.error('Error fetching proposals:', error);
+        toast.error(error.message || 'Failed to fetch proposals');
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchProposals();
+  }, [jobId]);
 
+  if (loading) return (
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+  );
 
+  if (!proposals.length) return (
+    <div className="container mx-auto px-4 py-8">
+      <Link to="/client/home" className="flex items-center text-gray-600 mb-6">
+        <ArrowLeftIcon className="w-5 h-5 mr-2" />
+        Back to Dashboard
+      </Link>
+      <div className="text-center py-12">
+        <h2 className="text-2xl font-semibold text-gray-700">No proposals yet</h2>
+        <p className="text-gray-500 mt-2">Check back later for new proposals</p>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <Link to="/client/home" className="flex items-center text-gray-600 mb-6">
+        <ArrowLeftIcon className="w-5 h-5 mr-2" />
+        Back to Dashboard
+      </Link>
+
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="p-6">
+          <h1 className="text-2xl font-bold mb-6">Proposals ({proposals.length})</h1>
+
+          <div className="space-y-6">
+            {proposals.map((proposal) => (
+              <div key={proposal.id} className="border rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-lg font-semibold">{proposal.freelancer.name}</h3>
+                    <p className="text-gray-600">{proposal.freelancer.title}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-lg font-bold">${proposal.bidAmount}</p>
+                    <p className="text-gray-500">{proposal.deliveryTime} days delivery</p>
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <h4 className="font-medium mb-2">Cover Letter</h4>
+                  <p className="text-gray-700">{proposal.coverLetter}</p>
+                </div>
+
+                {proposal.milestones && proposal.milestones.length > 0 && (
+                  <div className="mb-4">
+                    <h4 className="font-medium mb-2">Milestones</h4>
+                    <div className="space-y-2">
+                      {proposal.milestones.map((milestone, index) => (
+                        <div key={index} className="flex justify-between items-center bg-gray-50 p-3 rounded">
+                          <span className="text-gray-700">{milestone.description}</span>
+                          <span className="font-medium">${milestone.amount}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex justify-between items-center mt-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center">
+                      {[...Array(5)].map((_, index) => (
+                        <StarIcon
+                          key={index}
+                          className={`w-5 h-5 ${index < (proposal.freelancer.rating || 0) ? 'text-yellow-400' : 'text-gray-300'}`}
+                        />
+                      ))}
+                      <span className="ml-2 text-gray-600">
+                        {proposal.freelancer.rating || 0} ({proposal.freelancer.reviews || 0} reviews)
+                      </span>
+                    </div>
+                  </div>
+                  <div className="space-x-3">
+                    <button
+                      className="px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-50 transition-colors"
+                      onClick={() => window.location.href = `mailto:${proposal.freelancer.email}`}
+                    >
+                      Contact
+                    </button>
+                    <button
+                      className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                      onClick={() => handleHire(proposal.id)}
+                    >
+                      Hire
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
 
     return (
