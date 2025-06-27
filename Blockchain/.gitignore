@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Hardhat files
+cache/
+artifacts/
+typechain/
+typechain-types/
+
+# Contract deployment files
+deployments/
+
+# Test coverage
+coverage/
+coverage.json
+
+# Gas reporter files
+gas-report.txt
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs
+*.log
+
+# Debugging
+.node_repl_history
+
+# Build files
+dist/
+build/
+
+# Local deployments
+deployment-*.json
