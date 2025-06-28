@@ -6,11 +6,11 @@
     }
   ],
   "env": {
-    "VITE_API_URL": "@vite_api_url",
-    "VITE_CITREA_RPC_URL": "@vite_citrea_rpc_url",
-    "VITE_CITREA_CHAIN_ID": "@vite_citrea_chain_id",
-    "VITE_TRUSTLINK_CONTRACT_ADDRESS": "@vite_trustlink_contract_address",
-    "VITE_WALLET_CONNECT_PROJECT_ID": "@vite_wallet_connect_project_id"
+    "VITE_API_URL": "https://trustlink-cdlo.onrender.com",
+    "VITE_CITREA_RPC_URL": "https://rpc.citrea.xyz",
+    "VITE_CITREA_CHAIN_ID": "1001",
+    "VITE_TRUSTLINK_CONTRACT_ADDRESS": "0x72CA2541A705468368F9474fB419Defd002EC8af",
+    "VITE_WALLET_CONNECT_PROJECT_ID": "79be17847746fdcfa6c5e68028ee8116"
   },
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
