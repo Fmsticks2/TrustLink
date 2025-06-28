@@ -17,4 +17,13 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    alias: {
+      '@': '/src',
+    },
+  },
+  define: {
+    // Ensure environment variables are properly defined
+    'process.env': {}
+  },
 });
