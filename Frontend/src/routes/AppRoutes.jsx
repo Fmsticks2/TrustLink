@@ -19,7 +19,7 @@ import Proposal from '../components/Freelancer/proposal/Proposal.jsx';
 import SubmitProposal from '../components/Freelancer/proposal/SubmitProposal.jsx';
 import WithdrawProposal from '../components/Freelancer/proposal/WithdrawProposal.jsx';
 import MilestoneTracker from '../components/Freelancer/contractpages/MilestoneTracker.jsx';
-import ReviewContract from '../components/Freelancer/contractPages/ReviewContract';
+import ReviewContract from '../components/Freelancer/contractpages/ReviewContract.jsx';
 import JobPosting from '../components/Freelancer/contractpages/JobPosting.jsx'
 
 
