@@ -3,6 +3,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getProposalsByJob, acceptProposal } from '../../../services/api';
 import { toast } from 'react-hot-toast';
+import BgImg from '../../../assets/bgImage.png';
 
 function ViewProposal() {
   const { jobId } = useParams();
@@ -12,7 +13,7 @@ function ViewProposal() {
 
   const handleHire = async (proposalId) => {
     try {
-      await acceptProposal(proposalId);
+      await acceptProposal(jobId, proposalId);
       toast.success('Proposal accepted successfully!');
       navigate('/client/contracts');
     } catch (error) {

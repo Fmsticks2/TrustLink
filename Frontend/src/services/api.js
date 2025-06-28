@@ -87,6 +87,15 @@ export const getProposalsByFreelancer = async () => {
   }
 };
 
+export const acceptProposal = async (jobId, proposalId) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/jobs/${jobId}/proposals/${proposalId}/accept`);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
 // Add axios interceptor for authentication
 axios.interceptors.request.use(
   (config) => {
